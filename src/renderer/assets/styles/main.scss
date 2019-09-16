@@ -1,0 +1,10 @@
+/*
+
+Variables, mixins and functions are imported into each Vue component
+via webpack. See .electron-vue/webpack.renderer.config.js
+
+Style partials here are global styles imported in src/renderer/main.js
+
+*/
+
+@import "./partials/layout";
