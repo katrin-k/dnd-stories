@@ -4,6 +4,8 @@ import Router from "vue-router";
 import LandingPage from "../components/LandingPage";
 import ThingsIndex from "../components/ThingsIndex";
 import BeingsIndex from "../components/BeingsIndex";
+import PlacesIndex from "../components/PlacesIndex";
+import AdventuresIndex from "../components/AdventuresIndex";
 
 Vue.use(Router);
 
@@ -24,26 +26,16 @@ export default new Router({
       name: "beings-index",
       component: BeingsIndex
     },
-    // {
-    //   path: "/things/items",
-    //   name: "things-items-index",
-    //   component: require("@/components/ThingsItemsIndex").default
-    // },
-    // {
-    //   path: "/things/items/:id",
-    //   name: "things-items-single",
-    //   component: require("@/components/ThingsItemsSingle").default
-    // },
-    // {
-    //   path: "/things",
-    //   name: "things-index",
-    //   component: require("@/components/ThingsIndex").default
-    // },
-    // {
-    //   path: "/things",
-    //   name: "things-index",
-    //   component: require("@/components/ThingsIndex").default
-    // },
+    {
+      path: "/places",
+      name: "places-index",
+      component: PlacesIndex
+    },
+    {
+      path: "/adventures",
+      name: "adventures-index",
+      component: AdventuresIndex
+    },
     {
       path: "*",
       redirect: "/"

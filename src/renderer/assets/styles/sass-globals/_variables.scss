@@ -1,1 +1,87 @@
-$body-color: red;
+/* ==========================================================================
+   Base settings
+   ========================================================================== */
+
+// Grid Container max- and min-width dimensions
+$container-lg: 87rem; //1392px
+$container-md: 75rem;
+$container-sm: 55rem; // 880px
+
+/* Body font size */
+$base-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+  "Segoe UI Symbol";
+$base-font-size: 16px !default;
+$base-font-weight: 400 !default;
+$small-font-size: $base-font-size * 0.875 !default;
+$large-font-size: $base-font-size * 1.25 !default;
+
+/* Font Style */
+$ff-regular: "Roboto Regular" !default;
+$ff-light: "Roboto Light" !default;
+$ff-bold: "Roboto Bold" !default;
+
+/* ==========================================================================
+   Breakpoints
+   ========================================================================== */
+
+$featurephone: 360px;
+$smartphone: 480px;
+$tablet: 768px;
+$desktop: 992px;
+$retina: 1200px;
+$extended: 1440px;
+$extended-hd: 1920px;
+$extended-hdex: 2440px;
+$extended-4k: 3840px;
+
+/* ==========================================================================
+   Colors
+   ========================================================================== */
+
+// https://www.color-hex.com/color-palette/82622
+$darkbrown: #6d1616;
+$brown: #b43a06;
+$orange: #f9924d;
+$yellow: #fbcd5f;
+$egg: #ffe5a8;
+
+$primary: $darkbrown;
+$secondary: $egg;
+$error: #cf2a2a;
+$success: #166d16;
+$warning: $orange;
+
+$black: #000;
+$white: #fff;
+$grey-dark: #575757;
+$grey-not-so-dark: #ddd9da;
+$grey: #eee9ea;
+$grey-light: #f3f3f3;
+$grey-lighter: #f7f7f7;
+
+$text-color: $black;
+
+/* ==========================================================================
+   Custom Variables
+   ========================================================================== */
+
+$header-mobile-height: 70px;
+$header-tablet-height: 72px;
+// $header-desktop-height: 150px;
+$headerBreakpointTablet: $tablet + px;
+$headerBreakpointDesktop: $retina + px;
+$border-radius: 2px;
+
+/* ==========================================================================
+   Spacings
+   ========================================================================== */
+
+$base-spacing: 30px;
+
+$xxs-spacing: $base-spacing / 6;
+$xs-spacing: $base-spacing / 4;
+$sm-spacing: $base-spacing / 2;
+$md-spacing: $base-spacing;
+$lg-spacing: $base-spacing * 1.5;
+$xl-spacing: $base-spacing * 3;

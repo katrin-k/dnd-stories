@@ -1,4 +1,123 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $base-font-family;
+  font-weight: $base-font-weight;
+  font-size: $base-font-size;
+  line-height: 1.5;
+  color: $text-color;
+}
+
 img {
   height: auto;
-  width: 100%;
+  outline: 0;
+  max-width: 100%;
+}
+
+/* ==========================================================================
+   Textelements
+   ========================================================================== */
+
+h1,
+h2,
+h3,
+h4,
+.u-h1,
+.u-h2,
+.u-h3,
+.u-h4 {
+  font-weight: bold;
+}
+
+h1,
+.u-h1 {
+  @include fontSizeREM(26);
+  line-height: 1.25;
+  margin-bottom: 20px;
+
+  @include respondMin($retina) {
+    @include fontSizeREM(30);
+  }
+}
+
+h2,
+.u-h2 {
+  @include fontSizeREM(22);
+  line-height: 1.33;
+  margin-bottom: 20px;
+
+  @include respondMin($retina) {
+    @include fontSizeREM(26);
+  }
+}
+
+h3,
+.u-h3 {
+  @include fontSizeREM(20);
+  line-height: 1.33;
+  margin-bottom: 20px;
+
+  @include respondMin($retina) {
+    @include fontSizeREM(24);
+  }
+}
+
+h4,
+.u-h4 {
+  @include fontSizeREM(18);
+  line-height: 1.36;
+  margin-bottom: 15px;
+}
+
+h5,
+.u-h5 {
+  @include fontSizeREM(16);
+  line-height: 1.4;
+}
+
+h6,
+.u-h6 {
+  @include fontSizeREM(16);
+  line-height: 1.43;
+}
+
+p {
+  margin-bottom: $sm-spacing;
+}
+
+small,
+.u-small,
+small a,
+.u-small .u-link {
+  @include fontSizeREM(14);
+  line-height: 1.3;
+}
+
+small,
+.u-small {
+  margin-bottom: $md-spacing;
+}
+
+a {
+  transition: all 150ms ease;
+  color: $primary;
+}
+
+strong,
+b {
+  font-weight: bold;
+}
+
+address {
+  font-style: normal;
 }
