@@ -4,6 +4,6 @@
 
 <script>
 export default {
-  name: "ThingsIndex"
+  name: 'ThingsIndex',
 };
 </script>

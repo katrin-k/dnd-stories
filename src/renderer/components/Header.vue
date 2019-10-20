@@ -1,24 +1,25 @@
 <template>
   <header class="header">
     <div class="header__logo-wrapper">
-      <img
-        src="../assets/img/logo-dnd-fullname.png"
-        alt="Dnd-Logo"
-        class="header__logo"
-      />
+      <img src="../assets/img/logo-dnd-fullname.png"
+           alt="Dnd-Logo"
+           class="header__logo"
+      >
     </div>
 
     <Navigation />
-    <button class="header__settings">Settings</button>
+    <button class="header__settings">
+      Settings
+    </button>
   </header>
 </template>
 
 <script>
-import Navigation from "./Navigation";
+import Navigation from './Navigation';
 
 export default {
-  name: "Header",
-  components: { Navigation }
+  name: 'Header',
+  components: { Navigation },
 };
 </script>
 

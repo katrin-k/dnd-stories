@@ -4,6 +4,6 @@
 
 <script>
 export default {
-  name: "BeingsIndex"
+  name: 'BeingsIndex',
 };
 </script>

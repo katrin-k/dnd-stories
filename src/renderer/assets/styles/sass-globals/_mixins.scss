@@ -16,7 +16,7 @@
  * @param {number} $size - size in px; Default: $body-font-size-px
  *
  */
-@mixin propToREM($prop: "font-size", $size: $size) {
+@mixin propToREM($prop: 'font-size', $size: $size) {
   #{$prop}: ($size / $base-font-size) + rem;
 }
 
@@ -63,7 +63,13 @@
  * @param {string} $spread - spread radius
  * @param {string} $color - color
  */
-@mixin box-shadow($x: 0px, $y: 6px, $blur: 8px, $spread: -5px, $color: $black) {
+@mixin box-shadow(
+  $x: 0px,
+  $y: 6px,
+  $blur: 8px,
+  $spread: -5px,
+  $color: $black
+) {
   box-shadow: $x $y $blur $spread $color;
 }
 

@@ -8,18 +8,18 @@ $container-md: 75rem;
 $container-sm: 55rem; // 880px
 
 /* Body font size */
-$base-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-  Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-  "Segoe UI Symbol";
+$base-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+  'Segoe UI Emoji', 'Segoe UI Symbol';
 $base-font-size: 16px !default;
 $base-font-weight: 400 !default;
 $small-font-size: $base-font-size * 0.875 !default;
 $large-font-size: $base-font-size * 1.25 !default;
 
 /* Font Style */
-$ff-regular: "Roboto Regular" !default;
-$ff-light: "Roboto Light" !default;
-$ff-bold: "Roboto Bold" !default;
+$ff-regular: 'Roboto Regular' !default;
+$ff-light: 'Roboto Light' !default;
+$ff-bold: 'Roboto Bold' !default;
 
 /* ==========================================================================
    Breakpoints

@@ -2,29 +2,37 @@
   <nav aria-label="Hauptmenü">
     <ul class="nav-main">
       <li>
-        <router-link :to="{ name: 'landing-page' }" class="nav-main__link"
-          >Home</router-link
-        >
+        <router-link class="nav-main__link">
+          Home ist where the heart is and this line is very long
+        </router-link>
       </li>
       <li>
-        <router-link :to="{ name: 'beings-index' }" class="nav-main__link"
-          >Beings</router-link
+        <router-link :to="{ name: 'beings-index' }"
+                     class="nav-main__link"
         >
+          Beings
+        </router-link>
       </li>
       <li>
-        <router-link :to="{ name: 'things-index' }" class="nav-main__link"
-          >Things</router-link
+        <router-link :to="{ name: 'things-index' }"
+                     class="nav-main__link"
         >
+          Things
+        </router-link>
       </li>
       <li>
-        <router-link :to="{ name: 'places-index' }" class="nav-main__link"
-          >Orte</router-link
+        <router-link :to="{ name: 'places-index' }"
+                     class="nav-main__link"
         >
+          Orte
+        </router-link>
       </li>
       <li>
-        <router-link :to="{ name: 'adventures-index' }" class="nav-main__link"
-          >Adventures</router-link
+        <router-link class="nav-main__link"
+                     :to="{ name: 'adventures-index' }"
         >
+          Adventures
+        </router-link>
       </li>
     </ul>
   </nav>
@@ -32,7 +40,7 @@
 
 <script>
 export default {
-  name: "Navigation"
+  name: 'Navigation',
 };
 </script>
 

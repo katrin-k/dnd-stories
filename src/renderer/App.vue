@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import Header from "./components/Header";
+import Header from './components/Header';
 
 export default {
-  name: "DndStories",
-  components: { Header }
+  name: 'DndStories',
+  components: { Header },
 };
 </script>
 

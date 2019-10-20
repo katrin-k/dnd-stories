@@ -4,6 +4,6 @@
 
 <script>
 export default {
-  name: "PlacesIndex"
+  name: 'PlacesIndex',
 };
 </script>
