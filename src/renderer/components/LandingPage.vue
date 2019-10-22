@@ -65,17 +65,7 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: 'Source Sans Pro', sans-serif;
-}
 
 #wrapper {
   padding: 60px 80px;
@@ -85,15 +75,6 @@ body {
   height: auto;
   margin-bottom: 20px;
   width: 420px;
-}
-
-main {
-  display: flex;
-  justify-content: space-between;
-}
-
-main > div {
-  flex-basis: 50%;
 }
 
 .left-side {

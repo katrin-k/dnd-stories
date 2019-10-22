@@ -1,6 +1,7 @@
 'use strict';
 
 import { app, BrowserWindow } from 'electron';
+import '../renderer/store/index';
 
 /**
  * Set `__static` path to static files in production
@@ -23,7 +24,7 @@ function createWindow() {
    * Initial window options
    */
   mainWindow = new BrowserWindow({
-    height: 800,
+    height: 1150,
     useContentSize: true,
     width: 1620,
     webPreferences: {

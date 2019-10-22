@@ -12,9 +12,6 @@ let mainConfig = {
   entry: {
     main: path.join(__dirname, '../src/main/index.js')
   },
-  externals: [
-    ...Object.keys(dependencies || {})
-  ],
   module: {
     rules: [
       {
@@ -49,12 +46,15 @@ let mainConfig = {
     path: path.join(__dirname, '../dist/electron')
   },
   plugins: [
-    new webpack.NoEmitOnErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.ContextReplacementPlugin(/knex\/lib\/dialects/, /sqlite3\/index.js/)
   ],
   // see https://github.com/SimulatedGREG/electron-vue/issues/498#issuecomment-396571887
-  externals: [{
-    'electron-debug': 'electron-debug'
-  }],
+  externals: [
+    ...Object.keys(dependencies || {}),
+    { 'knex': 'commonjs knex' },
+    { 'electron-debug': 'electron-debug' }
+  ],
   resolve: {
     extensions: ['.js', '.json', '.node']
   },

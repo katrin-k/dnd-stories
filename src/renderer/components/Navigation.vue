@@ -2,8 +2,10 @@
   <nav aria-label="Hauptmenü">
     <ul class="nav-main">
       <li>
-        <router-link class="nav-main__link">
-          Home ist where the heart is and this line is very long
+        <router-link :to="{ name: 'landing-page' }"
+                     class="nav-main__link"
+        >
+          Home
         </router-link>
       </li>
       <li>

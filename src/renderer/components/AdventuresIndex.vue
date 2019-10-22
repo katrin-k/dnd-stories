@@ -5,26 +5,25 @@
     <form>
       <label for="title">
         Title
-        <input id="title"
-               v-model.lazy="newAdventureTitle"
-               type="text"
-               name="title"
-        >
       </label>
+      <input id="title"
+             v-model.lazy="newAdventureTitle"
+             type="text"
+             name="title"
+      >
       <label for="level">
         Level
-        <input id="level"
-               v-model.lazy="newAdventureLevel"
-               type="text"
-               name="level"
-        >
       </label>
+      <input id="level"
+             v-model.lazy="newAdventureLevel"
+             type="text"
+             name="level"
+      >
       <label for="introduction">Introduction</label>
       <textarea
         id="introduction"
         v-model.lazy="newAdventureIntro"
         name="introduction"
-        cols="30"
         rows="10"
       />
       <label for="background">Background</label>
@@ -32,19 +31,18 @@
         id="background"
         v-model.lazy="newAdventureBackground"
         name="background"
-        cols="30"
         rows="10"
       />
       <label for="notes">Notes</label>
-      <textarea id="notes"
-                v-model.lazy="newAdventureNotes"
-                name="notes"
-                cols="30"
-                rows="10"
+      <textarea
+        id="notes"
+        v-model.lazy="newAdventureNotes"
+        name="notes"
+        rows="10"
       />
       <input type="submit"
              value="Save adventure"
-             @click="saveAdventure"
+             @click.prevent="saveAdventure"
       >
     </form>
 
@@ -63,7 +61,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 export default {
   name: 'AdventuresIndex',
@@ -78,15 +76,20 @@ export default {
   },
   computed: {
     ...mapState({
-      adventures: state => state.adventures,
-    }),
+      adventures: state => state.Adventure.adventures,
+    })
   },
   methods: {
+    ...mapActions([
+      'adventureAddAction'
+    ]),
     saveAdventure() {
-      this.$store.dispatch(
-        'adventureAddAction',
-        this.composeNewAdventure(),
-      );
+      const payload = this.composeNewAdventure();
+      this.adventureAddAction(payload);
+      // this.$store.dispatch(
+      //   'adventureAddAction',
+      //   payload,
+      // );
       this.newAdventureLevel = '';
       this.newAdventureTitle = '';
       this.newAdventureIntro = '';
@@ -96,7 +99,7 @@ export default {
     composeNewAdventure() {
       return {
         level: this.newAdventureLevel,
-        title: this.newAdventureTitel,
+        title: this.newAdventureTitle,
         introduction: this.newAdventureIntro,
         background: this.newAdventureBackground,
         notes: this.newAdventureNotes,

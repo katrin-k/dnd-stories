@@ -5,6 +5,7 @@ import {
   createPersistedState,
   createSharedMutations,
 } from 'vuex-electron';
+// import database from '../../db/database';
 
 import modules from './modules';
 

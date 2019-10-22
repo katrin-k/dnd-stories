@@ -1,27 +1,7 @@
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: $base-font-family;
-  font-weight: $base-font-weight;
-  font-size: $base-font-size;
-  line-height: 1.5;
-  color: $text-color;
-}
-
-img {
-  height: auto;
-  outline: 0;
-  max-width: 100%;
+main {
+  padding: $md-spacing;
+  background: $secondary;
+  color: $primary;
 }
 
 /* ==========================================================================
