@@ -3,33 +3,57 @@
   "env": {
     "test": {
       "presets": [
-        ["@babel/env", {
-          "targets": { "node": 7 }
-        }]
+        [
+          "@babel/env",
+          {
+            "targets": {
+              "node": 7
+            }
+          }
+        ],
+        "minify"
       ],
-      "plugins": ["istanbul"]
+      "plugins": [
+        "istanbul"
+      ]
     },
     "main": {
       "presets": [
-        ["@babel/env", {
-          "targets": { "node": 7 }
-        }]
+        [
+          "@babel/env",
+          {
+            "targets": {
+              "node": 7
+            }
+          }
+        ],
+        "minify"
       ]
     },
     "renderer": {
       "presets": [
-        ["@babel/env", {
-          "modules": false
-        }]
+        [
+          "@babel/env",
+          {
+            "modules": false
+          }
+        ],
+        "minify"
       ]
     },
     "web": {
       "presets": [
-        ["@babel/env", {
-          "modules": false
-        }]
+        [
+          "@babel/env",
+          {
+            "modules": false
+          }
+        ],
+        "minify"
       ]
     }
   },
-  "plugins": ["@babel/transform-runtime"]
+  "plugins": [
+    "@babel/transform-runtime"
+  ]
 }
