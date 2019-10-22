@@ -46,13 +46,11 @@ let mainConfig = {
     path: path.join(__dirname, '../dist/electron')
   },
   plugins: [
-    new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.ContextReplacementPlugin(/knex\/lib\/dialects/, /sqlite3\/index.js/)
+    new webpack.NoEmitOnErrorsPlugin()
   ],
   // see https://github.com/SimulatedGREG/electron-vue/issues/498#issuecomment-396571887
   externals: [
     ...Object.keys(dependencies || {}),
-    { 'knex': 'commonjs knex' },
     { 'electron-debug': 'electron-debug' }
   ],
   resolve: {
