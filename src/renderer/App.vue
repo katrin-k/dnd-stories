@@ -14,6 +14,10 @@ export default {
 };
 </script>
 
-<style>
-/* CSS */
+<style lang="scss">
+#app {
+  display: grid;
+  grid-template-rows: 80px 1fr;
+  height: 100vh;
+}
 </style>
