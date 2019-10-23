@@ -30,8 +30,9 @@
         </router-link>
       </li>
       <li>
-        <router-link class="nav-main__link"
-                     :to="{ name: 'adventures-index' }"
+        <router-link
+          :to="{ name: 'adventures-layout' }"
+          class="nav-main__link"
         >
           Adventures
         </router-link>

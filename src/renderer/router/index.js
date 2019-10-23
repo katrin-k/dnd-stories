@@ -1,11 +1,15 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
+import AdventuresPage from '../pages/AdventuresPage.vue';
+
 import LandingPage from '../components/LandingPage';
 import ThingsIndex from '../components/ThingsIndex';
 import BeingsIndex from '../components/BeingsIndex';
 import PlacesIndex from '../components/PlacesIndex';
-import AdventuresIndex from '../components/AdventuresIndex';
+
+import AdventuresAll from '../components/AdventuresAll';
+import AdventuresSingle from '../components/AdventuresSingle';
 
 Vue.use(Router);
 
@@ -33,8 +37,16 @@ export default new Router({
     },
     {
       path: '/adventures',
-      name: 'adventures-index',
-      component: AdventuresIndex,
+      name: 'adventures-page',
+      component: AdventuresPage,
+      children: [{
+        path: 'layout',
+        name: 'adventures-layout',
+        components: {
+          sidebar: AdventuresAll,
+          main: AdventuresSingle,
+        }
+      }]
     },
     {
       path: '*',

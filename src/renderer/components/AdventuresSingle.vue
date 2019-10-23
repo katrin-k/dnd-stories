@@ -1,6 +1,20 @@
 <template>
   <main>
-    <h1>Adventures Index</h1>
+    <h1>Adventures Single</h1>
+    <div>
+      <ul>
+        <li>
+          <button @click="loadComponent($event, 'test-slot-one')">
+            display test slot one (eg a room)
+          </button>
+        </li>
+        <li>
+          <button @click="loadComponent($event, 'test-slot-two')">
+            display test slot two (eg a treasure)
+          </button>
+        </li>
+      </ul>
+    </div>
     <h2>New Adventure</h2>
     <form>
       <label for="title">
@@ -45,26 +59,14 @@
              @click.prevent="saveAdventure"
       >
     </form>
-
-    <section>
-      <h2>All adventures</h2>
-      <ul>
-        <li v-for="item in adventures"
-            :key="item.id"
-            @click="loadItem(item)"
-        >
-          {{ item.title }}
-        </li>
-      </ul>
-    </section>
   </main>
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
-  name: 'AdventuresIndex',
+  name: 'AdventuresSingle',
   data() {
     return {
       newAdventureLevel: '',
@@ -74,22 +76,14 @@ export default {
       newAdventureNotes: '',
     };
   },
-  computed: {
-    ...mapState({
-      adventures: state => state.Adventure.adventures,
-    })
-  },
   methods: {
     ...mapActions([
-      'adventureAddAction'
+      'adventureAddAction',
+      'asideRightDisplayComponent'
     ]),
     saveAdventure() {
       const payload = this.composeNewAdventure();
       this.adventureAddAction(payload);
-      // this.$store.dispatch(
-      //   'adventureAddAction',
-      //   payload,
-      // );
       this.newAdventureLevel = '';
       this.newAdventureTitle = '';
       this.newAdventureIntro = '';
@@ -105,6 +99,9 @@ export default {
         notes: this.newAdventureNotes,
       };
     },
+    loadComponent(event, componentName) {
+      this.asideRightDisplayComponent(componentName);
+    }
   },
 };
 </script>
