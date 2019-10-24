@@ -57,6 +57,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.6.3",
+    "@vuex-orm/core": "^0.32.5",
     "vue": "^2.5.16",
     "vue-electron": "^1.0.6",
     "vue-router": "^3.0.1",
@@ -65,6 +66,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-transform-runtime": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
     "ajv": "^6.5.0",

@@ -21,7 +21,7 @@
         Title
       </label>
       <input id="title"
-             v-model.lazy="newAdventureTitle"
+             v-model.lazy="newAdventure.title"
              type="text"
              name="title"
       >
@@ -29,28 +29,28 @@
         Level
       </label>
       <input id="level"
-             v-model.lazy="newAdventureLevel"
+             v-model.lazy="newAdventure.level"
              type="text"
              name="level"
       >
       <label for="introduction">Introduction</label>
       <textarea
         id="introduction"
-        v-model.lazy="newAdventureIntro"
+        v-model.lazy="newAdventure.intro"
         name="introduction"
         rows="10"
       />
       <label for="background">Background</label>
       <textarea
         id="background"
-        v-model.lazy="newAdventureBackground"
+        v-model.lazy="newAdventure.background"
         name="background"
         rows="10"
       />
       <label for="notes">Notes</label>
       <textarea
         id="notes"
-        v-model.lazy="newAdventureNotes"
+        v-model.lazy="newAdventure.notes"
         name="notes"
         rows="10"
       />
@@ -63,41 +63,19 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+// import { mapActions } from 'vuex';
+import Adventure from '@/models/Adventure'
 
 export default {
   name: 'AdventuresSingle',
   data() {
     return {
-      newAdventureLevel: '',
-      newAdventureTitle: '',
-      newAdventureIntro: '',
-      newAdventureBackground: '',
-      newAdventureNotes: '',
+      newAdventure: new Adventure()
     };
   },
   methods: {
-    ...mapActions([
-      'adventureAddAction',
-      'asideRightDisplayComponent'
-    ]),
     saveAdventure() {
-      const payload = this.composeNewAdventure();
-      this.adventureAddAction(payload);
-      this.newAdventureLevel = '';
-      this.newAdventureTitle = '';
-      this.newAdventureIntro = '';
-      this.newAdventureBackground = '';
-      this.newAdventureNotes = '';
-    },
-    composeNewAdventure() {
-      return {
-        level: this.newAdventureLevel,
-        title: this.newAdventureTitle,
-        introduction: this.newAdventureIntro,
-        background: this.newAdventureBackground,
-        notes: this.newAdventureNotes,
-      };
+      this.newAdventure.$save(this.newAdventure);
     },
     loadComponent(event, componentName) {
       this.asideRightDisplayComponent(componentName);

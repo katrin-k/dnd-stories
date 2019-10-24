@@ -14,13 +14,19 @@
 
 <script>
 import { mapState } from 'vuex';
+import Adventure from '@/models/Adventure'
 
 export default {
   name: 'AdventuresAll',
   computed: {
-    ...mapState({
-      adventures: state => state.Adventure.adventures,
-    })
-  }
+    adventures() {
+      return Adventure.all()
+    }
+  },
+  methods: {
+    loadItem(item) {
+      console.log('item', item);
+    }
+  },
 };
 </script>
