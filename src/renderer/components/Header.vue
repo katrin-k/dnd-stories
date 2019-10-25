@@ -6,7 +6,7 @@
            class="header__logo"
       >
     </div>
-
+    <p>{{ $route.path }}</p>
     <Navigation />
     <button class="header__settings">
       Settings

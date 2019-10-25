@@ -40,8 +40,8 @@ export default new Router({
       name: 'adventures-page',
       component: AdventuresPage,
       children: [{
-        path: 'layout',
-        name: 'adventures-layout',
+        path: '/:id',
+        name: 'adventures-single',
         components: {
           sidebar: AdventuresAll,
           main: AdventuresSingle,

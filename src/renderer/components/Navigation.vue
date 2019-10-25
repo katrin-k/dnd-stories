@@ -31,7 +31,7 @@
       </li>
       <li>
         <router-link
-          :to="{ name: 'adventures-layout' }"
+          :to="{ name: 'adventures-single', params: { id: 'init' } }"
           class="nav-main__link"
         >
           Adventures

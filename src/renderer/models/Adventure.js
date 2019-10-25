@@ -6,11 +6,11 @@ export default class Adventure extends Model {
   static fields() {
     return {
       id: this.increment(),
-      title: this.string(null),
-      level: this.number(null),
-      introduction: this.string(null),
-      background: this.string(null),
-      notes: this.string(null),
+      title: this.string(''),
+      level: this.number(1),
+      introduction: this.string(''),
+      background: this.string(''),
+      notes: this.string(''),
     }
   }
 }
