@@ -1,16 +1,16 @@
 <template>
   <aside class="sidebar--left">
     <h2>All adventures</h2>
-    <button @click="handleNew($event, 'AdventureSingle')">
+    <button @click="loadItem($event, 'new')">
       New adventure
     </button>
     <ul>
       <li v-for="item in adventures"
-          :key="item.id"
+          :key="item.$id"
       >
-        <router-link :to="{ name: 'adventures-single', params: { id: item.$id, adventure: item } }">
+        <button @click="loadItem($event, item.$id)">
           {{ item.title }}
-        </router-link>
+        </button>
       </li>
     </ul>
   </aside>
@@ -27,12 +27,8 @@ export default {
     }
   },
   methods: {
-    handleNew(event, componentName) {
-      this.$router.push({ name: 'adventures-single', params: { id: 'new' } }).catch(err => {})
-    },
-    loadItem(item) {
-      console.log('item', item);
-      this.$router.push({ name: 'adventures-single', params: { id: item.$id } }).catch(err => {})
+    loadItem(ev, id) {
+      this.$router.push({ name: 'adventures-single', params: { id: id } }).catch(err => {})
     }
   },
 };

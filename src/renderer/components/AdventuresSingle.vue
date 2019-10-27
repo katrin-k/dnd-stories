@@ -1,20 +1,6 @@
 <template>
   <main>
     <h1>Adventures Single</h1>
-    <!-- <div>
-      <ul>
-        <li>
-          <button @click="loadComponent($event, 'test-slot-one')">
-            display test slot one (eg a room)
-          </button>
-        </li>
-        <li>
-          <button @click="loadComponent($event, 'test-slot-two')">
-            display test slot two (eg a treasure)
-          </button>
-        </li>
-      </ul>
-    </div> -->
 
     <div v-if="this.$route.params.id === 'init'">
       <p>Wähle ein Abenteuer aus.</p>
@@ -27,7 +13,7 @@
           Title
         </label>
         <input id="title"
-               v-model.lazy="newAdventure.title"
+               v-model.lazy="adventure.title"
                type="text"
                name="title"
         >
@@ -35,28 +21,28 @@
           Level
         </label>
         <input id="level"
-               v-model.lazy="newAdventure.level"
+               v-model.lazy="adventure.level"
                type="text"
                name="level"
         >
         <label for="introduction">Introduction</label>
         <textarea
           id="introduction"
-          v-model.lazy="newAdventure.intro"
+          v-model.lazy="adventure.intro"
           name="introduction"
           rows="10"
         />
         <label for="background">Background</label>
         <textarea
           id="background"
-          v-model.lazy="newAdventure.background"
+          v-model.lazy="adventure.background"
           name="background"
           rows="10"
         />
         <label for="notes">Notes</label>
         <textarea
           id="notes"
-          v-model.lazy="newAdventure.notes"
+          v-model.lazy="adventure.notes"
           name="notes"
           rows="10"
         />
@@ -68,6 +54,19 @@
     </div>
 
     <div v-if="typeof this.$route.params.id === 'number'">
+      <ul>
+        <li>
+          <button @click="loadComponent($event, 'test-slot-one')">
+            display test slot one (eg a room)
+          </button>
+        </li>
+        <li>
+          <button @click="loadComponent($event, 'test-slot-two')">
+            display test slot two (eg a treasure)
+          </button>
+        </li>
+      </ul>
+
       <h2>Existing adventure</h2>
       <h2>{{ adventure.title }}</h2>
       <p>Level: {{ adventure.level }}</p>
@@ -87,44 +86,37 @@ import Adventure from '@/models/Adventure'
 
 export default {
   name: 'AdventuresSingle',
-  props: {
-    adventure: {
-      type: Object,
-      default() {
-        return {}
-      },
-      required: false
-    }
-  },
   data() {
     return {
-      newAdventure: null,
-      // adventure: null
+      adventure: null
     };
   },
-  // beforeRouteEnter (to, from, next) {
-  //   if (to.params.id === 'new') {
-  //     this.newAdventure = new Adventure()
-  //   } else if (typeof to.params.id === 'number') {
-  //     this.adventure = Adventure.find(this.$route.params.id)
-  //     console.log('this.adventure', this.adventure);
-  //   }
-  //   next()
-  // },
-  // beforeRouteUpdate(to, from, next) {
-  //   console.log('typeof to.params.id', typeof to.params.id);
-  //   if (to.params.id === 'new') {
-  //     this.newAdventure = new Adventure()
-  //   } else if (typeof to.params.id === 'number') {
-  //     this.adventure = Adventure.find(this.$route.params.id)
-  //     console.log('this.adventure', this.adventure);
-  //   }
-  //   next()
-  // },
+  beforeRouteUpdate: function(to, from, next) {
+    this.fetchAdventure(to.params.id).then((response) => {
+      this.adventure = response;
+      next()
+    },(error) => {
+      console.error("Failed!", error);
+    })
+  },
   methods: {
     ...mapActions([
       'asideRightDisplayComponent'
     ]),
+    fetchAdventure(id) {
+      return new Promise( (resolve, reject) => {
+        let adv;
+        (id === 'new')
+          ? adv = new Adventure()
+          : adv = Adventure.find(id);
+        if (adv) {
+          resolve(adv);
+        }
+        else {
+          reject(Error("It broke"));
+        }
+      })
+    },
     saveAdventure() {
       this.newAdventure.$save(this.newAdventure);
     },
