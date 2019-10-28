@@ -5,15 +5,15 @@
     </div>
     <router-view name="sidebar" />
     <router-view name="main" />
-    <AsideRightSlot />
+    <DynamicSlot />
   </div>
 </template>
 
 <script>
-import AsideRightSlot from '../components/AsideRightSlot';
+import DynamicSlot from '../components/_shared/DynamicSlot';
 
 export default {
   name: 'AdventuresPage',
-  components: {AsideRightSlot}
+  components: {DynamicSlot}
 };
 </script>

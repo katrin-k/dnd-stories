@@ -20,7 +20,7 @@
 import Adventure from '@/models/Adventure'
 
 export default {
-  name: 'AdventuresAll',
+  name: 'AdventuresIndex',
   computed: {
     adventures() {
       return Adventure.all()

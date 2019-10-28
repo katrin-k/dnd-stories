@@ -1,6 +1,6 @@
 <template>
   <main>
-    <h1>Adventures Single</h1>
+    <h1>Adventures Show</h1>
 
     <div v-if="this.$route.params.id === 'init'">
       <p>Wähle ein Abenteuer aus.</p>
@@ -85,7 +85,7 @@ import { mapActions } from 'vuex';
 import Adventure from '@/models/Adventure'
 
 export default {
-  name: 'AdventuresSingle',
+  name: 'AdventuresShow',
   data() {
     return {
       adventure: null
@@ -101,7 +101,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'asideRightDisplayComponent'
+      'dynamicSlotDisplayComponent'
     ]),
     fetchAdventure(id) {
       return new Promise( (resolve, reject) => {
@@ -121,7 +121,7 @@ export default {
       this.newAdventure.$save(this.newAdventure);
     },
     loadComponent(event, componentName) {
-      this.asideRightDisplayComponent(componentName);
+      this.dynamicSlotDisplayComponent(componentName);
     },
   },
 };

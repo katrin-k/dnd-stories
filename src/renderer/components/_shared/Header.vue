@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <div class="header__logo-wrapper">
-      <img src="../assets/img/logo-dnd-fullname.png"
+      <img src="../../assets/img/logo-dnd-fullname.png"
            alt="Dnd-Logo"
            class="header__logo"
       >

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Header from './components/Header';
+import Header from './components/_shared/Header';
 
 export default {
   name: 'DndStories',

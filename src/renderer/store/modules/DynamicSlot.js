@@ -3,13 +3,13 @@ const state = {
 };
 
 const actions = {
-  asideRightDisplayComponent({ commit }, componentName) {
-    commit('ASIDE_RIGHT_DISPLAY_COMPONENT_MUTATION', componentName);
+  dynamicSlotDisplayComponent({ commit }, componentName) {
+    commit('DYNAMIC_SLOT_DISPLAY_COMPONENT', componentName);
   }
 };
 
 const mutations = {
-  ASIDE_RIGHT_DISPLAY_COMPONENT_MUTATION(state, componentName) {
+  DYNAMIC_SLOT_DISPLAY_COMPONENT(state, componentName) {
     state.currentComponent = componentName;
   },
 };

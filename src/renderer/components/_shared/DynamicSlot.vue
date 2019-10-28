@@ -15,12 +15,12 @@ import { mapState } from 'vuex';
 export default {
   computed: {
     ...mapState({
-      currentComponent: state => state.AsideRight.currentComponent,
+      currentComponent: state => state.DynamicSlot.currentComponent,
     })
   },
   methods: {
     unloadComponent(){
-      this.$store.dispatch('asideRightDisplayComponent', null);
+      this.$store.dispatch('dynamicSlotDisplayComponent', null);
     }
   },
 }
