@@ -74,12 +74,14 @@ export default {
     };
   },
   beforeRouteUpdate: function(to, from, next) {
-    this.fetchPlace(to.params.id).then((response) => {
-      this.place= response;
-      next()
-    },(error) => {
-      console.error("Failed!", error);
-    })
+    if (to.params.id !== 'init') {
+      this.fetchPlace(to.params.id).then((response) => {
+        this.place= response;
+        next()
+      },(error) => {
+        console.error("Failed!", error);
+      })
+    }
   },
   methods: {
     ...mapActions([

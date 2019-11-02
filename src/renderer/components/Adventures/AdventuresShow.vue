@@ -92,12 +92,14 @@ export default {
     };
   },
   beforeRouteUpdate: function(to, from, next) {
-    this.fetchAdventure(to.params.id).then((response) => {
-      this.adventure = response;
-      next()
-    },(error) => {
-      console.error("Failed!", error);
-    })
+    if (to.params.id !== 'init') {
+      this.fetchAdventure(to.params.id).then((response) => {
+        this.adventure = response;
+        next()
+      },(error) => {
+        console.error("Failed!", error);
+      })
+    }
   },
   methods: {
     ...mapActions([
