@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import store from '../store/index';
 
 import LandingPage from '../components/LandingPage/LandingPage';
 import AdventuresPage from '../pages/AdventuresPage';
@@ -16,12 +17,13 @@ import AdventuresShow from '../components/Adventures/AdventuresShow';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
       name: 'landing-page',
       component: LandingPage,
+
     },
     {
       path: '/items',
@@ -65,3 +67,11 @@ export default new Router({
     },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  to.name !== from.name
+    && store.dispatch('dynamicSlotDisplayComponent', null);
+  next();
+})
+
+export default router
