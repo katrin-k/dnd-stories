@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     loadItem(ev, id) {
-      this.$router.push({ name: 'adventures-single', params: { id: id } }).catch(err => {})
+      this.$router.push({ name: 'adventures-details', params: { id: id } }).catch(err => {})
     }
   },
 };

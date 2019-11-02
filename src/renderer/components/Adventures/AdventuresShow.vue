@@ -54,6 +54,16 @@
     </div>
 
     <div v-if="typeof this.$route.params.id === 'number'">
+      <h2>Existing adventure</h2>
+      <h2>{{ adventure.title }}</h2>
+      <p>Level: {{ adventure.level }}</p>
+      <h3>Introduction</h3>
+      <p>{{ adventure.intro }}</p>
+      <h3>Background</h3>
+      <p>{{ adventure.background }}</p>
+      <h3>Notes</h3>
+      <p>{{ adventure.notes }}</p>
+      <h3>Ort:</h3>
       <ul>
         <li>
           <button @click="loadComponent($event, 'test-slot-one')">
@@ -66,16 +76,6 @@
           </button>
         </li>
       </ul>
-
-      <h2>Existing adventure</h2>
-      <h2>{{ adventure.title }}</h2>
-      <p>Level: {{ adventure.level }}</p>
-      <h3>Introduction</h3>
-      <p>{{ adventure.intro }}</p>
-      <h3>Background</h3>
-      <p>{{ adventure.background }}</p>
-      <h3>Notes</h3>
-      <p>{{ adventure.notes }}</p>
     </div>
   </main>
 </template>
@@ -118,7 +118,7 @@ export default {
       })
     },
     saveAdventure() {
-      this.newAdventure.$save(this.newAdventure);
+      this.adventure.$save(this.adventure);
     },
     loadComponent(event, componentName) {
       this.dynamicSlotDisplayComponent(componentName);

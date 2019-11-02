@@ -7,10 +7,14 @@
 .wrapper--3col {
   display: grid;
   grid-template-columns: 300px 1fr 1fr;
+  grid-template-rows: max-content;
+  grid-template-areas:
+    "heading heading heading"
+    "left main right";
 }
 
 .wrapper--3col__top-row {
-  grid-column: span 3;
+  grid-area: heading;
 }
 
 /* ==========================================================================
