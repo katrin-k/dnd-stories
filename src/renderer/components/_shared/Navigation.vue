@@ -9,17 +9,17 @@
         </router-link>
       </li>
       <li>
-        <router-link :to="{ name: 'beings-index' }"
+        <router-link :to="{ name: 'creatures-index' }"
                      class="nav-main__link"
         >
-          Beings
+          Creatures
         </router-link>
       </li>
       <li>
-        <router-link :to="{ name: 'things-index' }"
+        <router-link :to="{ name: 'items-index' }"
                      class="nav-main__link"
         >
-          Things
+          Items
         </router-link>
       </li>
       <li>

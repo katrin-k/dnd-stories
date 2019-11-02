@@ -5,8 +5,8 @@ import LandingPage from '../components/LandingPage/LandingPage';
 import AdventuresPage from '../pages/AdventuresPage';
 import PlacesPage from '../pages/PlacesPage';
 
-import ThingsIndex from '../components/Things/ThingsIndex';
-import BeingsIndex from '../components/Beings/BeingsIndex';
+import ItemsIndex from '../components/Items/ItemsIndex';
+import CreaturesIndex from '../components/Creatures/CreaturesIndex';
 
 import PlacesIndex from '../components/Places/PlacesIndex';
 import PlacesShow from '../components/Places/PlacesShow';
@@ -24,14 +24,14 @@ export default new Router({
       component: LandingPage,
     },
     {
-      path: '/things',
-      name: 'things-index',
-      component: ThingsIndex,
+      path: '/items',
+      name: 'items-index',
+      component: ItemsIndex,
     },
     {
-      path: '/beings',
-      name: 'beings-index',
-      component: BeingsIndex,
+      path: '/creatures',
+      name: 'creatures-index',
+      component: CreaturesIndex,
     },
     {
       path: 'places',

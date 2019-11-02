@@ -1,9 +1,9 @@
 <template>
-  <h1>Beings Index</h1>
+  <h1>Creatures Index</h1>
 </template>
 
 <script>
 export default {
-  name: 'BeingsIndex',
+  name: 'CreaturesIndex',
 };
 </script>
