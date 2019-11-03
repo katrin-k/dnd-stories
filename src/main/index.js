@@ -32,9 +32,12 @@ function createWindow() {
     },
   });
 
-  BrowserWindow.addDevToolsExtension(
-    'node_modules/vue-devtools/vender',
-  );
+  // see https://github.com/SimulatedGREG/electron-vue/issues/242
+  // this has been an issue, keeping the code for now, even though it would vue-devtools twice
+  // if needed at some point, uncomment but with process.env.NODE_ENV !== 'prodcution', cause in built app this throws error
+  // BrowserWindow.addDevToolsExtension(
+  //   'node_modules/vue-devtools/vender',
+  // );
   mainWindow.loadURL(winURL);
 
   mainWindow.on('closed', () => {
