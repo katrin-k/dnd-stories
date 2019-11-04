@@ -5,9 +5,12 @@ import store from '../store/index';
 import LandingPage from '../components/LandingPage/LandingPage';
 import AdventuresPage from '../pages/AdventuresPage';
 import PlacesPage from '../pages/PlacesPage';
+import ItemsPage from '../pages/ItemsPage';
+
+import CreaturesIndex from '../components/Creatures/CreaturesIndex';
 
 import ItemsIndex from '../components/Items/ItemsIndex';
-import CreaturesIndex from '../components/Creatures/CreaturesIndex';
+import ItemsShow from '../components/Items/ItemsShow';
 
 import PlacesIndex from '../components/Places/PlacesIndex';
 import PlacesShow from '../components/Places/PlacesShow';
@@ -26,14 +29,22 @@ const router = new Router({
 
     },
     {
-      path: '/items',
-      name: 'items-index',
-      component: ItemsIndex,
-    },
-    {
       path: '/creatures',
       name: 'creatures-index',
       component: CreaturesIndex,
+    },
+    {
+      path: '/items',
+      name: 'items-page',
+      component: ItemsPage,
+      children: [{
+        path: ':id',
+        name: 'items-details',
+        components: {
+          sidebar: ItemsIndex,
+          main: ItemsShow
+        }
+      }]
     },
     {
       path: 'places',

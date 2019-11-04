@@ -16,7 +16,7 @@
         </router-link>
       </li>
       <li>
-        <router-link :to="{ name: 'items-index' }"
+        <router-link :to="{ name: 'items-details', params: { id: 'init' } }"
                      class="nav-main__link"
         >
           Items
