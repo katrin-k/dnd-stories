@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { Place, PlaceCategory } from '@/models/Place'
+import { Place } from '@/models/Place'
 
 export default {
   name: 'PlacesIndex',

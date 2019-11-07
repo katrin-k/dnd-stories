@@ -9,18 +9,21 @@
           :key="item.$id"
       >
         <button @click="loadItem($event, item.$id)">
-          {{ item.title }}
+          {{ item.name }}
         </button>
       </li>
     </ul>
+    <ItemCategories />
   </aside>
 </template>
 
 <script>
 import {Item} from '@/models/Item'
+import ItemCategories from './ItemCategories'
 
 export default {
   name: 'ItemsIndex',
+  components: { ItemCategories },
   computed: {
     items() {
       return Item.all()

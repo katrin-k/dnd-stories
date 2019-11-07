@@ -6,8 +6,13 @@
       <p>Wähle ein Abenteuer aus.</p>
     </div>
 
-    <div v-if="this.$route.params.id === 'new'">
-      <h2>New Adventure</h2>
+    <div v-if="isEditing">
+      <h2 v-if="this.$route.params.id === 'new'">
+        New Adventure
+      </h2>
+      <h2 v-else>
+        Bearbeite Abenteuer
+      </h2>
       <form>
         <label for="title">
           Title
@@ -48,12 +53,18 @@
         />
         <input type="submit"
                value="Save adventure"
-               @click.prevent="saveAdventure"
+               @click.prevent="handleSave"
         >
       </form>
     </div>
 
     <div v-if="typeof this.$route.params.id === 'number'">
+      <button @click="handleEditWish">
+        Abenteuer bearbeiten
+      </button>
+      <button @click="handleDeleteWish(adventure.id)">
+        Abenteuer löschen
+      </button>
       <h2>Existing adventure</h2>
       <h2>{{ adventure.title }}</h2>
       <p>Level: {{ adventure.level }}</p>
@@ -88,17 +99,23 @@ export default {
   name: 'AdventuresShow',
   data() {
     return {
-      adventure: null
+      adventure: null,
+      isEditing: false
     };
   },
   beforeRouteUpdate: function(to, from, next) {
     if (to.params.id !== 'init') {
       this.fetchAdventure(to.params.id).then((response) => {
         this.adventure = response;
-        next()
       },(error) => {
         console.error("Failed!", error);
       })
+    }
+    next()
+  },
+  beforeUpdate() {
+    if (this.$route.params.id === 'new') {
+      this.isEditing = true
     }
   },
   methods: {
@@ -119,8 +136,32 @@ export default {
         }
       })
     },
-    saveAdventure() {
+    handleSave() {
+      if (this.$route.params.id === 'new') {
+        this.saveNewAdventure()
+      } else if (typeof this.$route.params.id === 'number') {
+          this.updateAdventure()
+      } else {
+        // TODO: Display error on screen
+        console.error('There was an error saving this adventure');
+      }
+      this.isEditing = false
+    },
+    saveNewAdventure() {
       this.adventure.$save(this.adventure);
+    },
+    updateAdventure() {
+      // Adventure.dispatch('update', { data: this.adventure })
+      // this.$store.dispatch('entities/adventures/update', this.adventure)
+      // Adventure.update({ where: this.adventure.id , data: this.adventure })
+      this.adventure.$update(this.adventure)
+    },
+    handleEditWish() {
+      this.isEditing = true
+    },
+    handleDeleteWish(id) {
+      Adventure.delete(id)
+      this.$router.push({ name: 'adventures-details', params: { id: 'init' } }).catch(err => {})
     },
     loadComponent(event, componentName) {
       this.dynamicSlotDisplayComponent(componentName);

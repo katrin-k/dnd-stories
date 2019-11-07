@@ -36,6 +36,14 @@
                type="checkbox"
                name="is_collected"
         >
+        <select v-model="item.category_id">
+          <option v-for="cat in itemCategories"
+                  :key="cat.item_cat_id"
+                  :value="cat.item_cat_id"
+          >
+            {{ cat.name }} {{ cat.item_cat_id }}
+          </option>
+        </select>
 
         <input type="submit"
                value="Item speichern"
@@ -45,12 +53,17 @@
     </div>
 
     <div v-if="typeof this.$route.params.id === 'number'">
-      <h2>Existierender Ort</h2>
-      <h2>{{ place.name }}</h2>
+      <button @click="handleDeleteWish(item.id)">
+        Item löschen
+      </button>
+      <h2>Existierendes Item</h2>
+      <h2>{{ item.name }}</h2>
       <h3>Beschreibung</h3>
-      <p>{{ place.description }}</p>
+      <p>{{ item.description }}</p>
       <h3>Lokalisierung</h3>
-      <p>{{ place.localization }}</p>
+      <p>{{ item.localization }}</p>
+      <h3>Kategorie</h3>
+      <p>{{ item.category_id }}</p>
       <h3>Verwandte Items</h3>
       <ul>
         <li>
@@ -76,18 +89,29 @@ export default {
   name: 'ItemsShow',
   data() {
     return {
-      item: null
+      item: null,
+      itemCategories: null
     };
+  },
+  async created() {
+    // console.log('Item.new', await new Item());
+    return this.itemCategories = await ItemCategory.all()
+  },
+  async updated() {
+    console.log('item in updated', this.item);
   },
   beforeRouteUpdate: function(to, from, next) {
     if (to.params.id !== 'init') {
-      this.fetchItem(to.params.id).then((response) => {
+      this.fetchItem(to.params.id).then((response, error) => {
+        console.log('reponse', response);
+        console.log('this.item before reponse', this.item);
         this.item = response;
-        next()
+        console.log('this.item after reponse', this.item);
       },(error) => {
         console.error("Failed!", error);
       })
     }
+    next()
   },
   methods: {
     ...mapActions([
@@ -107,8 +131,22 @@ export default {
         }
       })
     },
-    saveItem() {
-      this.item.$save(this.item);
+    async saveItem() {
+      console.log('this.item before create', this.item);
+      Item.insert({
+        data: this.item,
+        insertOrUpdate: ['itemCategory']
+      })
+      // const item = this.item.$save()
+      // const savedItem = await Item.insert({data: this.item})
+      // Item.dispatch('insert', {data: this.item})
+
+      // push to new item
+      // this.$router.push({ name: 'items-details', params: { id: this.item.id } }).catch(err => {})
+    },
+    handleDeleteWish(id) {
+      Item.delete(id)
+      this.$router.push({ name: 'items-details', params: { id: 'init' } }).catch(err => {})
     },
     loadComponent(event, componentName) {
       this.dynamicSlotDisplayComponent(componentName);

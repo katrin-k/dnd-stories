@@ -7,7 +7,7 @@ const database = new Database()
 
 database.register(Adventure)
 database.register(Place)
-database.register(PlaceCategory)
+// database.register(PlaceCategory)
 database.register(Item)
 database.register(ItemCategory)
 

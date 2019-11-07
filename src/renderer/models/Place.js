@@ -4,6 +4,8 @@ import Adventure from './Adventure'
 export class PlaceCategory extends Model {
   static entity = 'placeCategory'
 
+  static primaryKey = 'place_cat_id'
+
   static fields() {
     return {
       place_cat_id: this.increment(),
