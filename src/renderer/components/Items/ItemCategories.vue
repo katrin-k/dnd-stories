@@ -60,14 +60,10 @@ export default {
   methods: {
     async saveItemCategory() {
       const item = await this.newCategory.$save()
-        console.log(item)
-
       this.newCategory = new ItemCategory()
     },
     handleDeleteWish(id) {
-      console.log('ItemCategory', ItemCategory.delete);
       ItemCategory.delete(id)
-      // this.$router.push({ name: 'items-details', params: { id: 'init' } }).catch(err => {})
     },
     expandList(ev) {
       this.isExpanded = !this.isExpanded

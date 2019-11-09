@@ -37,15 +37,6 @@ export default {
               params: { id: id }
             })
             .catch(err => {})
-    },
-    async fetchNewItem() {
-      Item.insert({data: new Item()}).then(entities => {
-        console.log('entities numero uno', entities)
-      })
-      this.$router.push({
-        name: "items-details",
-        params: { id: 'new', item: new Item() }
-      });
     }
   },
 };
