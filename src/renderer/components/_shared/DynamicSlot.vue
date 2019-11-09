@@ -5,6 +5,7 @@
     </button>
     <component :is="currentComponent"
                v-if="currentComponent"
+               :slot-id="slotId"
     />
   </aside>
 </template>
@@ -16,11 +17,12 @@ export default {
   computed: {
     ...mapState({
       currentComponent: state => state.DynamicSlot.currentComponent,
+      slotId: state => state.DynamicSlot.slotId,
     })
   },
   methods: {
     unloadComponent(){
-      this.$store.dispatch('dynamicSlotDisplayComponent', null);
+      this.$store.dispatch('dynamicSlotDisplayComponent', {});
     }
   },
 }

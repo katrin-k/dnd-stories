@@ -21,6 +21,9 @@
           :key="place.id"
       >
         {{ place.name }}
+        <button @click="loadComponent($event, 'place-show', place.id)">
+          {{ place.name }}
+        </button>
       </li>
     </ul>
     <div v-if="!editingPlace"
@@ -44,19 +47,6 @@
         </option>
       </select>
     </div>
-
-    <ul>
-      <li>
-        <button @click="loadComponent($event, 'test-slot-one')">
-          Item one (eg a room)
-        </button>
-      </li>
-      <li>
-        <button @click="loadComponent($event, 'test-slot-two')">
-          Item two (eg a treasure)
-        </button>
-      </li>
-    </ul>
   </div>
 </template>
 
@@ -118,8 +108,11 @@ export default {
         this.$router.push({ name: 'items-details', params: { id: this.item.id } }).catch(err => {})
       })
     },
-    loadComponent(event, componentName) {
-      this.dynamicSlotDisplayComponent(componentName);
+    loadComponent(event, componentName, id) {
+      this.dynamicSlotDisplayComponent({
+        componentName: componentName,
+        slotId: id
+      });
     },
   },
 }

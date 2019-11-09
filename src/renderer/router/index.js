@@ -13,10 +13,14 @@ import ItemsIndex from '../components/Items/ItemsIndex';
 import ItemsDetail from '../components/Items/ItemsDetail';
 
 import PlacesIndex from '../components/Places/PlacesIndex';
-import PlacesShow from '../components/Places/PlacesShow';
+import PlacesDetail from '../components/Places/PlacesDetail';
 
 import AdventuresIndex from '../components/Adventures/AdventuresIndex';
 import AdventuresShow from '../components/Adventures/AdventuresShow';
+
+// Register components
+import PlaceShow from '../components/Places/PlaceShow.vue';
+Vue.component('place-show', PlaceShow)
 
 Vue.use(Router);
 
@@ -52,10 +56,10 @@ const router = new Router({
       component: PlacesPage,
       children: [{
         path: ':id',
-        name: 'places-details',
+        name: 'places-detail',
         components: {
           sidebar: PlacesIndex,
-          main: PlacesShow,
+          main: PlacesDetail,
         }
       }]
     },

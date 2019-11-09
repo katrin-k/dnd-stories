@@ -23,7 +23,7 @@
         </router-link>
       </li>
       <li>
-        <router-link :to="{ name: 'places-details', params: { id: 'init' } }"
+        <router-link :to="{ name: 'places-detail', params: { id: 'init' } }"
                      class="nav-main__link"
         >
           Orte

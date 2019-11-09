@@ -74,19 +74,6 @@
       <p>{{ adventure.background }}</p>
       <h3>Notes</h3>
       <p>{{ adventure.notes }}</p>
-      <h3>Ort:</h3>
-      <ul>
-        <li>
-          <button @click="loadComponent($event, 'test-slot-one')">
-            display test slot one (eg a room)
-          </button>
-        </li>
-        <li>
-          <button @click="loadComponent($event, 'test-slot-two')">
-            display test slot two (eg a treasure)
-          </button>
-        </li>
-      </ul>
     </div>
   </main>
 </template>
@@ -163,8 +150,11 @@ export default {
       Adventure.delete(id)
       this.$router.push({ name: 'adventures-details', params: { id: 'init' } }).catch(err => {})
     },
-    loadComponent(event, componentName) {
-      this.dynamicSlotDisplayComponent(componentName);
+    loadComponent(event, componentName, id) {
+      this.dynamicSlotDisplayComponent({
+        componentName: componentName,
+        slotId: id
+      });
     },
   },
 };

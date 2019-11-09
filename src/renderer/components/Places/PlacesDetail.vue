@@ -1,34 +1,33 @@
 <template>
   <main>
-    <h1>Items Show</h1>
+    <h1>Places Show</h1>
 
     <div v-if="this.$route.params.id === 'init'">
-      <p>Wähle ein Item aus.</p>
+      <p>Wähle einen Ort aus.</p>
     </div>
 
     <div v-if="this.$route.params.id === 'new'">
-      <ItemNew />
+      <PlaceNew />
     </div>
 
     <div v-if="slotId || typeof this.$route.params.id === 'number'">
-      <ItemShow />
+      <PlaceShow />
     </div>
   </main>
 </template>
 
 <script>
 import { mapState } from 'vuex';
-import ItemNew from './ItemNew'
-import ItemShow from './ItemShow'
+import PlaceNew from './PlaceNew'
+import PlaceShow from './PlaceShow'
 
 export default {
-  name: 'ItemsDetail',
-  components: { ItemNew, ItemShow },
+  name: 'PlacesDetail',
+  components: { PlaceNew, PlaceShow },
   computed: {
     ...mapState({
       slotId: state => state.DynamicSlot.slotId,
     }),
   },
 };
-
 </script>

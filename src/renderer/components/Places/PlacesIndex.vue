@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     loadItem(ev, id) {
-      this.$router.push({ name: 'places-details', params: { id: id } }).catch(err => {})
+      this.$router.push({ name: 'places-detail', params: { id: id } }).catch(err => {})
     }
   },
 };
