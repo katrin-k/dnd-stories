@@ -47,7 +47,7 @@
 
         <input type="submit"
                value="Item speichern"
-               @click.prevent="saveItem"
+               @click.prevent="saveNewItem"
         >
       </form>
     </div>
@@ -57,14 +57,43 @@
         Item löschen
       </button>
       <h2>Existierendes Item</h2>
-      <h2>{{ item.name }}</h2>
+      <h2>{{ item.name }} | {{ item.id }}</h2>
       <h3>Beschreibung</h3>
       <p>{{ item.description }}</p>
       <h3>Lokalisierung</h3>
       <p>{{ item.localization }}</p>
       <h3>Kategorie</h3>
-      <p>{{ item.category_id }}</p>
-      <h3>Verwandte Items</h3>
+      <p>{{ item.category_id }} - {{ itemCategory.name }}</p>
+      <h3>Verwandte Orte</h3>
+      <ul v-if="item.places.length > 0">
+        <li v-for="place in item.places"
+            :key="place.id"
+        >
+          {{ place.name }}
+        </li>
+      </ul>
+      <div v-if="!editingPlace"
+           class="add-relation"
+      >
+        <button @click="showAddPlace">
+          Ort hinzufügen
+        </button>
+      </div>
+      <div v-else
+           class="add-relation"
+      >
+        <select :value="item.places"
+                @change="addPlacetoItem"
+        >
+          <option v-for="place in places"
+                  :key="place.id"
+                  :value="place.id"
+          >
+            {{ place.name }}
+          </option>
+        </select>
+      </div>
+
       <ul>
         <li>
           <button @click="loadComponent($event, 'test-slot-one')">
@@ -83,33 +112,34 @@
 
 <script>
 import { mapActions } from 'vuex';
-import { Item, ItemCategory } from '@/models/Item'
+import { Item, ItemCategory, PlaceItem } from '@/models/Item'
+import { Place } from '@/models/Place'
 
 export default {
   name: 'ItemsShow',
   data() {
     return {
       item: null,
-      itemCategories: null
+      editingPlace: false
     };
   },
-  async created() {
-    // console.log('Item.new', await new Item());
-    return this.itemCategories = await ItemCategory.all()
-  },
-  async updated() {
-    console.log('item in updated', this.item);
+  computed: {
+    itemCategories() {
+      return ItemCategory.all()
+    },
+    itemCategory() {
+      const name = ItemCategory.query().whereId(parseInt(this.item.category_id)).get()
+      return name[0]
+    },
+    places() {
+      return Place.all()
+    },
   },
   beforeRouteUpdate: function(to, from, next) {
     if (to.params.id !== 'init') {
-      this.fetchItem(to.params.id).then((response, error) => {
-        console.log('reponse', response);
-        console.log('this.item before reponse', this.item);
-        this.item = response;
-        console.log('this.item after reponse', this.item);
-      },(error) => {
-        console.error("Failed!", error);
-      })
+      (to.params.id === 'new')
+        ? this.item = new Item()
+        : this.item = Item.find(to.params.id);
     }
     next()
   },
@@ -117,36 +147,50 @@ export default {
     ...mapActions([
       'dynamicSlotDisplayComponent'
     ]),
-    fetchItem(id) {
-      return new Promise( (resolve, reject) => {
-        let item;
-        (id === 'new')
-          ? item = new Item()
-          : item = Item.find(id);
-        if (item) {
-          resolve(item);
-        }
-        else {
-          reject(Error("It broke"));
-        }
-      })
-    },
-    async saveItem() {
-      console.log('this.item before create', this.item);
+    saveNewItem() {
+      if (this.item.category_id) {
+        this.addCategoryToItem()
+      }
+
       Item.insert({
         data: this.item,
-        insertOrUpdate: ['itemCategory']
+        update: ['itemCategory']
+      }).then(entities => {
+        this.$router.push({ name: 'items-details', params: { id: entities.items[0].id } }).catch(err => {})
       })
-      // const item = this.item.$save()
-      // const savedItem = await Item.insert({data: this.item})
-      // Item.dispatch('insert', {data: this.item})
-
-      // push to new item
-      // this.$router.push({ name: 'items-details', params: { id: this.item.id } }).catch(err => {})
     },
     handleDeleteWish(id) {
       Item.delete(id)
       this.$router.push({ name: 'items-details', params: { id: 'init' } }).catch(err => {})
+    },
+    addCategoryToItem() {
+      this.item.category = this.itemCategory
+    },
+    showAddPlace() {
+      this.editingPlace = true
+    },
+    handleAddPlace() {
+      Item.update({
+        data: this.item
+      }).then(entities => {
+        this.editingPlace = false
+      })
+    },
+    addPlacetoItem(ev){
+      const prevPlaces = this.item.places
+      const newPlace = this.places.filter(place => {
+        return place.id.toString() === ev.target.value
+      })
+
+      Item.update({
+        where: this.item.id,
+        data: {
+          places: [...prevPlaces, ...newPlace]
+        }
+      }).then(entities => {
+        this.editingPlace = false
+        this.$router.push({ name: 'items-details', params: { id: this.item.id } }).catch(err => {})
+      })
     },
     loadComponent(event, componentName) {
       this.dynamicSlotDisplayComponent(componentName);
