@@ -1,3 +1,9 @@
+#app {
+  display: grid;
+  grid-template-rows: 80px 1fr;
+  height: 100vh;
+}
+
 .wrapper {
   padding: $md-spacing;
   background: $secondary;

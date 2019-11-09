@@ -14,10 +14,11 @@ export default {
 };
 </script>
 
-<style lang="scss">
-#app {
-  display: grid;
-  grid-template-rows: 80px 1fr;
-  height: 100vh;
-}
+<style src="./assets/styles/tailwind.css">
+/*
+
+  Looks strange?
+  See https://github.com/tailwindcss/setup-examples/tree/master/examples/vue-cli
+
+*/
 </style>

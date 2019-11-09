@@ -1,16 +1,16 @@
 <template>
   <aside class="sidebar--left">
     <h2>All items</h2>
-    <button @click="loadItem($event, 'new')">
-      New item
-    </button>
+    <Button text="New Item"
+            @click.native="loadItem($event, 'new')"
+    />
     <ul>
       <li v-for="item in items"
           :key="item.$id"
       >
-        <button @click="loadItem($event, item.id)">
-          {{ item.name }}
-        </button>
+        <Button :text="item.name"
+                @click.native="loadItem($event, item.id)"
+        />
       </li>
     </ul>
     <ItemCategories />
@@ -20,10 +20,11 @@
 <script>
 import {Item} from '@/models/Item'
 import ItemCategories from './ItemCategories'
+import Button from '../_shared/Button'
 
 export default {
   name: 'ItemsIndex',
-  components: { ItemCategories },
+  components: { ItemCategories, Button },
   computed: {
     items() {
       return Item.all()
