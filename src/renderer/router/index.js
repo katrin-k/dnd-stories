@@ -10,7 +10,7 @@ import ItemsPage from '../pages/ItemsPage';
 import CreaturesIndex from '../components/Creatures/CreaturesIndex';
 
 import ItemsIndex from '../components/Items/ItemsIndex';
-import ItemsShow from '../components/Items/ItemsShow';
+import ItemsDetail from '../components/Items/ItemsDetail';
 
 import PlacesIndex from '../components/Places/PlacesIndex';
 import PlacesShow from '../components/Places/PlacesShow';
@@ -42,7 +42,7 @@ const router = new Router({
         name: 'items-details',
         components: {
           sidebar: ItemsIndex,
-          main: ItemsShow
+          main: ItemsDetail
         }
       }]
     },

@@ -26,7 +26,7 @@ export class Item extends Model {
       quantity: this.number(1),
       is_collected: this.boolean(false),
       // FK of IC
-      category_id: this.string(null),
+      category_id: this.string(''),
       category: this.belongsTo(ItemCategory, 'category_id', 'item_cat_id'),
       places: this.belongsToMany(Place, PlaceItem, 'place_id', 'item_id')
     }
