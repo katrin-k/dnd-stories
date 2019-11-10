@@ -1,6 +1,7 @@
 <template>
   <button
-    :class="{ 'btn-text': textButton, 'btn': !textButton, 'btn-tag': tagStyle }"
+    :class="{ 'btn-text': textButton, 'btn': !textButton, 'btn-tag': tagStyle, 'btn-submit': typeSubmit }"
+    :type="typeSubmit ? 'submit' : 'button'"
   >
     {{ text }}
   </button>
@@ -21,6 +22,10 @@ export default {
     tagStyle: {
       type: Boolean,
       default: false
+    },
+    typeSubmit: {
+      type: Boolean,
+      default: false
     }
   }
 }
@@ -29,11 +34,12 @@ export default {
 <style>
 /* eslint-disable */
 .btn {
+  transition: all 225ms linear;
   @apply border border-solid border-orange-800 font-bold px-2 rounded-sm;
 }
 .btn:hover,
 .btn:focus {
-  @apply bg-orange-800 text-white;
+  @apply bg-orange-800 text-orange-300;
 }
 .btn-text {
   @apply text-orange-900;
@@ -44,6 +50,14 @@ export default {
 }
 .btn-tag {
   @apply font-normal;
+}
+.btn-submit {
+  @apply block w-full p-2 bg-orange-800 text-orange-300;
+
+}
+.btn-submit:hover,
+.btn-submit:focus {
+  @apply text-orange-100;
 }
 /* eslint-enable */
 </style>

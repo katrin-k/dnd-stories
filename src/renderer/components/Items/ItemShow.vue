@@ -30,28 +30,21 @@
         />
       </li>
     </RelatedDataList>
+
     <ActionBar>
-      <div v-if="!editingPlace"
-           class="add-relation"
-      >
-        <Button text="Ort hinzufügen"
-                @click.native="showAddPlace"
-        />
-      </div>
-      <div v-else
-           class="add-relation"
-      >
-        <select :value="item.places"
-                @change="addPlacetoItem"
-        >
-          <option v-for="place in places"
-                  :key="place.id"
-                  :value="place.id"
-          >
-            {{ place.name }}
-          </option>
-        </select>
-      </div>
+      <Button v-if="!editingPlace"
+              text="Ort hinzufügen"
+              @click.native="showAddPlace"
+      />
+      <multiselect v-else
+                   placeholder="Please select..."
+                   :value="item.places"
+                   :options="places"
+                   track-by="id"
+                   label="name"
+                   clear-on-select
+                   @input="addPlacetoItem"
+      />
     </ActionBar>
   </div>
 </template>
@@ -102,16 +95,13 @@ export default {
         this.editingPlace = false
       })
     },
-    addPlacetoItem(ev){
+    addPlacetoItem(newPlace){
       const prevPlaces = this.item.places
-      const newPlace = this.places.filter(place => {
-        return place.id.toString() === ev.target.value
-      })
 
       Item.update({
         where: this.item.id,
         data: {
-          places: [...prevPlaces, ...newPlace]
+          places: [...prevPlaces, newPlace]
         }
       }).then(entities => {
         this.editingPlace = false

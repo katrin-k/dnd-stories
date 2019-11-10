@@ -34,11 +34,12 @@
                type="text"
                name="name"
         >
-
-        <input type="submit"
-               value="Itemkategorie speichern"
-               @click.prevent="saveItemCategory"
-        >
+        <ActionBar>
+          <Button text="Itemkategorie speichern"
+                  type-submit
+                  @click.native.prevent="saveItemCategory"
+          />
+        </ActionBar>
       </form>
     </div>
   </div>
@@ -47,10 +48,11 @@
 <script>
 import { ItemCategory } from '@/models/Item'
 import Button from '../_shared/Button'
+import ActionBar from '../_shared/ActionBar'
 
 export default {
   name: 'ItemCategories',
-  components: { Button },
+  components: { Button, ActionBar },
   data() {
     return {
       newCategory: new ItemCategory(),

@@ -26,10 +26,12 @@
              name="localization"
       >
 
-      <input type="submit"
-             value="Ort speichern"
-             @click.prevent="saveNewPlace"
-      >
+      <ActionBar>
+        <Button text="Ort speichern"
+                type-submit
+                @click.native.prevent="saveNewPlace"
+        />
+      </ActionBar>
     </form>
   </div>
 </template>
@@ -37,9 +39,12 @@
 <script>
 import { mapState } from 'vuex';
 import { Place, PlaceCategory } from '@/models/Place'
+import Button from '../_shared/Button'
+import ActionBar from '../_shared/ActionBar'
 
 export default {
   name: 'PlacesNew',
+  components: { Button, ActionBar },
   computed: {
     ...mapState({
       slotId: state => state.DynamicSlot.slotId,

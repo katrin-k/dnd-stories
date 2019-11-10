@@ -53,10 +53,13 @@
           name="notes"
           rows="10"
         />
-        <input type="submit"
-               value="Save adventure"
-               @click.prevent="handleSave"
-        >
+
+        <ActionBar>
+          <Button text="Abenteuer speichern"
+                  type-submit
+                  @click.native.prevent="handleSave"
+          />
+        </ActionBar>
       </form>
     </div>
 

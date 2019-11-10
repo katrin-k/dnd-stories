@@ -32,7 +32,7 @@
              name="is_collected"
       >
       <!-- TODO: check for required -->
-      <select v-model="item.category_id"
+      <!-- <select v-model="item.category_id"
               required
       >
         <option disabled
@@ -46,21 +46,32 @@
         >
           {{ cat.name }} {{ cat.item_cat_id }}
         </option>
-      </select>
-
-      <input type="submit"
-             value="Item speichern"
-             @click.prevent="saveNewItem"
-      >
+      </select> -->
+      <multiselect :value="item.category_id"
+                   :options="itemCategories"
+                   placeholder="Please select..."
+                   track-by="item_cat_id"
+                   label="name"
+                   @input="object => item.category_id = object.item_cat_id"
+      />
+      <ActionBar>
+        <Button text="Item speichern"
+                type-submit
+                @click.native.prevent="saveNewItem"
+        />
+      </ActionBar>
     </form>
   </div>
 </template>
 
 <script>
 import { Item, ItemCategory } from '@/models/Item'
+import Button from '../_shared/Button'
+import ActionBar from '../_shared/ActionBar'
 
 export default {
   name: 'ItemNew',
+  components: { Button, ActionBar },
   computed: {
     item() {
       return new Item()
