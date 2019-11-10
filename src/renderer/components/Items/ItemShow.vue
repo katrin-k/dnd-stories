@@ -19,36 +19,40 @@
     </p>
 
     <h3>Verwandte Orte</h3>
-    <ul v-if="item.places.length > 0">
+    <RelatedDataList v-if="item.places.length > 0">
       <li v-for="place in item.places"
           :key="place.id"
+          class="mr-1"
       >
         <Button :text="place.name"
+                tag-style
                 @click.native="loadComponent($event, 'place-show', place.id)"
         />
       </li>
-    </ul>
-    <div v-if="!editingPlace"
-         class="add-relation"
-    >
-      <Button text="Ort hinzufügen"
-              @click.native="showAddPlace"
-      />
-    </div>
-    <div v-else
-         class="add-relation"
-    >
-      <select :value="item.places"
-              @change="addPlacetoItem"
+    </RelatedDataList>
+    <ActionBar>
+      <div v-if="!editingPlace"
+           class="add-relation"
       >
-        <option v-for="place in places"
-                :key="place.id"
-                :value="place.id"
+        <Button text="Ort hinzufügen"
+                @click.native="showAddPlace"
+        />
+      </div>
+      <div v-else
+           class="add-relation"
+      >
+        <select :value="item.places"
+                @change="addPlacetoItem"
         >
-          {{ place.name }}
-        </option>
-      </select>
-    </div>
+          <option v-for="place in places"
+                  :key="place.id"
+                  :value="place.id"
+          >
+            {{ place.name }}
+          </option>
+        </select>
+      </div>
+    </ActionBar>
   </div>
 </template>
 
@@ -58,10 +62,11 @@ import { Item, ItemCategory, PlaceItem } from '@/models/Item'
 import { Place } from '@/models/Place'
 import Button from '../_shared/Button'
 import ActionBar from '../_shared/ActionBar'
+import RelatedDataList from '../_shared/RelatedDataList'
 
 export default {
   name: 'ItemShow',
-  components: { Button, ActionBar },
+  components: { Button, ActionBar, RelatedDataList },
   data() {
     return {
       editingPlace: false

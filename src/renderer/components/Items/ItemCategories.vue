@@ -3,19 +3,19 @@
     <h2 class="flex justify-between items-center text-2xl">
       Item Categories
       <a v-if="!isExpanded"
-         class="text-blue-700 underline"
+         class="font-normal text-blue-700 underline"
          @click.prevent="expandList"
-      >Expand</a>
+      >expand</a>
       <a v-else
-         class="text-blue-700 underline"
+         class="font-normal text-blue-700 underline"
          @click.prevent="expandList"
-      >Collapse</a>
+      >collapse</a>
     </h2>
     <div v-if="isExpanded">
       <ul class="my-6">
         <li v-for="cat in itemCategories"
             :key="cat.id"
-            class="flex justify-between items-center mb-2 hover:bg-gray-400"
+            class="flex justify-between items-center mb-2 p-2 rounded-sm hover:bg-orange-300"
         >
           {{ cat.name }}
           <Button text="delete"

@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper wrapper--3col">
+  <div class="bg-orange-200 wrapper wrapper--3col">
     <div class="wrapper--3col__top-row">
       <h1 class="text-4xl">
         Adventures
