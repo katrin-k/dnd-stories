@@ -1,11 +1,14 @@
 <template>
   <div>
-    <Button text="Ort löschen"
-            @click.native="handleDeleteWish(place.id)"
-    />
+    <ActionBar>
+      <Button text="Ort löschen"
+              @click.native="handleDeleteWish(place.id)"
+      />
+    </ActionBar>
 
-    <h2>Existierender Ort</h2>
-    <h2>{{ place.name }}</h2>
+    <h2 class="text-2xl">
+      {{ place.name }}
+    </h2>
     <h3>Beschreibung</h3>
     <p>{{ place.description }}</p>
     <h3>Lokalisierung</h3>
@@ -17,10 +20,11 @@
 import { mapActions, mapState } from 'vuex';
 import { Place, PlaceCategory } from '@/models/Place'
 import Button from '../_shared/Button'
+import ActionBar from '../_shared/ActionBar'
 
 export default {
   name: 'PlaceShow',
-  components: { Button },
+  components: { Button, ActionBar },
   computed: {
     ...mapState({
       slotId: state => state.DynamicSlot.slotId,

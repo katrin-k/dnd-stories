@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h2>Neuer Ort</h2>
+    <h2 class="text-2xl">
+      Neuer Ort
+    </h2>
     <form>
       <label for="name">
         Name

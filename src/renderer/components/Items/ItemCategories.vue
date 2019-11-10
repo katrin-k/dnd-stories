@@ -1,6 +1,6 @@
 <template>
   <div class="mt-4">
-    <h1 class="flex justify-between items-center">
+    <h2 class="flex justify-between items-center text-2xl">
       Item Categories
       <a v-if="!isExpanded"
          class="text-blue-700 underline"
@@ -10,7 +10,7 @@
          class="text-blue-700 underline"
          @click.prevent="expandList"
       >Collapse</a>
-    </h1>
+    </h2>
     <div v-if="isExpanded">
       <ul class="my-6">
         <li v-for="cat in itemCategories"

@@ -1,10 +1,14 @@
 <template>
   <aside class="sidebar--left">
-    <h2>All places</h2>
-    <Button text="Neuer
+    <h2 class="text-2xl">
+      All places
+    </h2>
+    <ActionBar>
+      <Button text="Neuer
         Ort"
-            @click.native="loadItem($event, 'new')"
-    />
+              @click.native="loadItem($event, 'new')"
+      />
+    </ActionBar>
     <ul class="mt-4">
       <li v-for="place in places"
           :key="place.id"
@@ -22,10 +26,11 @@
 <script>
 import { Place } from '@/models/Place'
 import Button from '../_shared/Button'
+import ActionBar from '../_shared/ActionBar'
 
 export default {
   name: 'PlacesIndex',
-  components: { Button },
+  components: { Button, ActionBar },
   computed: {
     places() {
       return Place.all()

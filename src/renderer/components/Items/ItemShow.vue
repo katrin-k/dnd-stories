@@ -1,11 +1,14 @@
 <template>
   <div>
-    <Button text="Item löschen"
-            @click.native="handleDeleteWish(item.id)"
-    />
+    <ActionBar>
+      <Button text="Item löschen"
+              @click.native="handleDeleteWish(item.id)"
+      />
+    </ActionBar>
 
-    <h2>Existierendes Item</h2>
-    <h2>{{ item.name }} | {{ item.id }}</h2>
+    <h2 class="text-2xl">
+      {{ item.name }} | {{ item.id }}
+    </h2>
     <h3>Beschreibung</h3>
     <p>{{ item.description }}</p>
     <h3>Lokalisierung</h3>
@@ -54,10 +57,11 @@ import { mapActions } from 'vuex';
 import { Item, ItemCategory, PlaceItem } from '@/models/Item'
 import { Place } from '@/models/Place'
 import Button from '../_shared/Button'
+import ActionBar from '../_shared/ActionBar'
 
 export default {
   name: 'ItemShow',
-  components: { Button },
+  components: { Button, ActionBar },
   data() {
     return {
       editingPlace: false

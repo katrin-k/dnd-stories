@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h2>Neues Item</h2>
+    <h2 class="text-2xl">
+      Neues Item
+    </h2>
     <form>
       <label for="name">
         Name

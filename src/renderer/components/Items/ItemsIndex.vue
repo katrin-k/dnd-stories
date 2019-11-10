@@ -1,9 +1,13 @@
 <template>
   <aside class="sidebar--left">
-    <h2>All items</h2>
-    <Button text="New Item"
-            @click.native="loadItem($event, 'new')"
-    />
+    <h2 class="text-2xl">
+      All items
+    </h2>
+    <ActionBar>
+      <Button text="New Item"
+              @click.native="loadItem($event, 'new')"
+      />
+    </ActionBar>
     <ul class="mt-4">
       <li v-for="item in items"
           :key="item.$id"
@@ -23,10 +27,11 @@
 import {Item} from '@/models/Item'
 import ItemCategories from './ItemCategories'
 import Button from '../_shared/Button'
+import ActionBar from '../_shared/ActionBar'
 
 export default {
   name: 'ItemsIndex',
-  components: { ItemCategories, Button },
+  components: { ItemCategories, Button, ActionBar },
   computed: {
     items() {
       return Item.all()
