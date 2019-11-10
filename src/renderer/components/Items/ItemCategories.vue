@@ -1,27 +1,30 @@
 <template>
-  <main>
-    <h1>
+  <div class="mt-4">
+    <h1 class="flex justify-between items-center">
       Item Categories
       <a v-if="!isExpanded"
+         class="text-blue-700 underline"
          @click.prevent="expandList"
       >Expand</a>
       <a v-else
+         class="text-blue-700 underline"
          @click.prevent="expandList"
       >Collapse</a>
     </h1>
     <div v-if="isExpanded">
-      <ul>
+      <ul class="my-6">
         <li v-for="cat in itemCategories"
             :key="cat.id"
+            class="flex justify-between items-center mb-2 hover:bg-gray-400"
         >
           {{ cat.name }}
-          <button @click="handleDeleteWish(cat.item_cat_id)">
-            Kat. löschen
-          </button>
+          <Button text="delete"
+                  @click.native="handleDeleteWish(cat.item_cat_id)"
+          />
         </li>
       </ul>
 
-      <h2>Neue Itemkategorie</h2>
+      <h3>Neue Itemkategorie</h3>
       <form>
         <label for="name">
           Name
@@ -38,14 +41,16 @@
         >
       </form>
     </div>
-  </main>
+  </div>
 </template>
 
 <script>
 import { ItemCategory } from '@/models/Item'
+import Button from '../_shared/Button'
 
 export default {
   name: 'ItemCategories',
+  components: { Button },
   data() {
     return {
       newCategory: new ItemCategory(),

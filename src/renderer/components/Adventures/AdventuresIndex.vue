@@ -1,16 +1,18 @@
 <template>
   <aside class="sidebar--left">
     <h2>All adventures</h2>
-    <button @click="loadItem($event, 'new')">
-      New adventure
-    </button>
-    <ul>
+    <Button text="New adventure"
+            @click.native="loadItem($event, 'new')"
+    />
+    <ul class="mt-4">
       <li v-for="item in adventures"
           :key="item.$id"
+          class="mb-2"
       >
-        <button @click="loadItem($event, item.$id)">
-          {{ item.title }}
-        </button>
+        <Button :text="item.title"
+                text-button
+                @click.native="loadItem($event, item.id)"
+        />
       </li>
     </ul>
   </aside>
@@ -18,9 +20,11 @@
 
 <script>
 import Adventure from '@/models/Adventure'
+import Button from '../_shared/Button'
 
 export default {
   name: 'AdventuresIndex',
+  components: { Button },
   computed: {
     adventures() {
       return Adventure.all()

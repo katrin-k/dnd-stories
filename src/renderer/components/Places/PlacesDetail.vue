@@ -1,6 +1,6 @@
 <template>
   <main>
-    <h1>Places Show</h1>
+    <h1>Places Details</h1>
 
     <div v-if="this.$route.params.id === 'init'">
       <p>Wähle einen Ort aus.</p>

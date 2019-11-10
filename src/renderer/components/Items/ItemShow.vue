@@ -1,8 +1,8 @@
 <template>
   <div>
-    <button @click="handleDeleteWish(item.id)">
-      Item löschen
-    </button>
+    <Button text="Item löschen"
+            @click.native="handleDeleteWish(item.id)"
+    />
 
     <h2>Existierendes Item</h2>
     <h2>{{ item.name }} | {{ item.id }}</h2>
@@ -20,18 +20,17 @@
       <li v-for="place in item.places"
           :key="place.id"
       >
-        {{ place.name }}
-        <button @click="loadComponent($event, 'place-show', place.id)">
-          {{ place.name }}
-        </button>
+        <Button :text="place.name"
+                @click.native="loadComponent($event, 'place-show', place.id)"
+        />
       </li>
     </ul>
     <div v-if="!editingPlace"
          class="add-relation"
     >
-      <button @click="showAddPlace">
-        Ort hinzufügen
-      </button>
+      <Button text="Ort hinzufügen"
+              @click.native="showAddPlace"
+      />
     </div>
     <div v-else
          class="add-relation"
@@ -54,9 +53,11 @@
 import { mapActions } from 'vuex';
 import { Item, ItemCategory, PlaceItem } from '@/models/Item'
 import { Place } from '@/models/Place'
+import Button from '../_shared/Button'
 
 export default {
   name: 'ItemShow',
+  components: { Button },
   data() {
     return {
       editingPlace: false

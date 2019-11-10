@@ -1,8 +1,8 @@
 <template>
   <div>
-    <button @click="handleDeleteWish(place.id)">
-      Ort löschen
-    </button>
+    <Button text="Ort löschen"
+            @click.native="handleDeleteWish(place.id)"
+    />
 
     <h2>Existierender Ort</h2>
     <h2>{{ place.name }}</h2>
@@ -16,9 +16,11 @@
 <script>
 import { mapActions, mapState } from 'vuex';
 import { Place, PlaceCategory } from '@/models/Place'
+import Button from '../_shared/Button'
 
 export default {
   name: 'PlaceShow',
+  components: { Button },
   computed: {
     ...mapState({
       slotId: state => state.DynamicSlot.slotId,

@@ -1,16 +1,19 @@
 <template>
   <aside class="sidebar--left">
     <h2>All places</h2>
-    <button @click="loadItem($event, 'new')">
-      Neuer Ort
-    </button>
-    <ul>
-      <li v-for="item in places"
-          :key="item.$id"
+    <Button text="Neuer
+        Ort"
+            @click.native="loadItem($event, 'new')"
+    />
+    <ul class="mt-4">
+      <li v-for="place in places"
+          :key="place.id"
+          class="mb-2"
       >
-        <button @click="loadItem($event, item.$id)">
-          {{ item.name }}
-        </button>
+        <Button :text="place.name"
+                text-button
+                @click.native="loadItem($event, place.id)"
+        />
       </li>
     </ul>
   </aside>
@@ -18,9 +21,11 @@
 
 <script>
 import { Place } from '@/models/Place'
+import Button from '../_shared/Button'
 
 export default {
   name: 'PlacesIndex',
+  components: { Button },
   computed: {
     places() {
       return Place.all()

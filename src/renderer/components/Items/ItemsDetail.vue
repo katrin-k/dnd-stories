@@ -1,6 +1,6 @@
 <template>
   <main>
-    <h1>Items Show</h1>
+    <h1>Items Details</h1>
 
     <div v-if="this.$route.params.id === 'init'">
       <p>Wähle ein Item aus.</p>

@@ -4,11 +4,13 @@
     <Button text="New Item"
             @click.native="loadItem($event, 'new')"
     />
-    <ul>
+    <ul class="mt-4">
       <li v-for="item in items"
           :key="item.$id"
+          class="mb-2"
       >
         <Button :text="item.name"
+                text-button
                 @click.native="loadItem($event, item.id)"
         />
       </li>

@@ -1,6 +1,6 @@
 <template>
   <main>
-    <h1>Adventures Show</h1>
+    <h1>Adventures Details</h1>
 
     <div v-if="this.$route.params.id === 'init'">
       <p>Wähle ein Abenteuer aus.</p>
@@ -59,12 +59,12 @@
     </div>
 
     <div v-if="typeof this.$route.params.id === 'number'">
-      <button @click="handleEditWish">
-        Abenteuer bearbeiten
-      </button>
-      <button @click="handleDeleteWish(adventure.id)">
-        Abenteuer löschen
-      </button>
+      <Button text="Abenteuer bearbeiten"
+              @click.native="handleEditWish"
+      />
+      <Button text="Abenteuer löschen"
+              @click.native="handleDeleteWish(adventure.id)"
+      />
       <h2>Existing adventure</h2>
       <h2>{{ adventure.title }}</h2>
       <p>Level: {{ adventure.level }}</p>
@@ -81,9 +81,11 @@
 <script>
 import { mapActions } from 'vuex';
 import Adventure from '@/models/Adventure'
+import Button from '../_shared/Button'
 
 export default {
   name: 'AdventuresShow',
+  components: { Button },
   data() {
     return {
       adventure: null,
