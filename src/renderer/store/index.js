@@ -1,12 +1,9 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import VuexORM from '@vuex-orm/core'
-import database from '../models/index'
+import VuexORM from '@vuex-orm/core';
+import { createPersistedState } from 'vuex-electron';
 
-import {
-  createPersistedState,
-} from 'vuex-electron';
-
+import database from '../models/index';
 import modules from './modules';
 
 Vue.use(Vuex);
