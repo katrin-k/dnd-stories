@@ -1,6 +1,10 @@
-# dnd-vue
+# DnD Stories
 
-> An electron-vue project
+Disclaimer: This app is work in progress.
+
+"Storyteller" is a side project for a friend of mine. It supports them in their
+role as a Dungeon Master (yes, Dungeons & Dragons), managing the various bits
+and pieces to create adventures for the group.
 
 #### Build Setup
 

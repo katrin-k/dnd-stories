@@ -1,8 +1,8 @@
 {
-  "name": "dnd-vue",
+  "name": "dnd-stories",
   "version": "0.0.1",
-  "author": "katrin <katrin.kampfrath@gmail.com>",
-  "description": "An electron-vue project",
+  "author": "katrin-k",
+  "description": "An electron-vue project managing information to build Dungeons & Dragons adventures",
   "license": "MIT",
   "main": "./dist/electron/main.js",
   "scripts": {
@@ -24,7 +24,7 @@
   },
   "build": {
     "productName": "dnd-stories",
-    "appId": "com.katrin.dndStories",
+    "appId": "com.katrin.dnd-stories",
     "directories": {
       "output": "build"
     },
