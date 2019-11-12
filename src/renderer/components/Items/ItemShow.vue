@@ -1,11 +1,5 @@
 <template>
   <div>
-    <ActionBar>
-      <Button text="Item löschen"
-              @click.native="handleDeleteWish(item.id)"
-      />
-    </ActionBar>
-
     <h2 class="text-2xl">
       {{ item.name }} | {{ item.id }}
     </h2>
@@ -44,6 +38,14 @@
                    label="name"
                    clear-on-select
                    @input="addPlacetoItem"
+      />
+    </ActionBar>
+
+    <hr class="border-orange-900">
+
+    <ActionBar>
+      <Button text="Item löschen"
+              @click.native="handleDeleteWish(item.id)"
       />
     </ActionBar>
   </div>

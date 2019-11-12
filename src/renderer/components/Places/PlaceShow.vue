@@ -1,11 +1,5 @@
 <template>
   <div>
-    <ActionBar>
-      <Button text="Ort löschen"
-              @click.native="handleDeleteWish(place.id)"
-      />
-    </ActionBar>
-
     <h2 class="text-2xl">
       {{ place.name }}
     </h2>
@@ -13,6 +7,14 @@
     <p>{{ place.description }}</p>
     <h3>Lokalisierung</h3>
     <p>{{ place.localization }}</p>
+
+    <hr class="border-orange-900">
+
+    <ActionBar>
+      <Button text="Ort löschen"
+              @click.native="handleDeleteWish(place.id)"
+      />
+    </ActionBar>
   </div>
 </template>
 
