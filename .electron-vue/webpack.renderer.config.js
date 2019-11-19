@@ -6,7 +6,7 @@ const path = require('path');
 const { dependencies } = require('../package.json');
 const webpack = require('webpack');
 
-const MinifyPlugin = require('babel-minify-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -138,6 +138,9 @@ let rendererConfig = {
     __dirname: process.env.NODE_ENV !== 'production',
     __filename: process.env.NODE_ENV !== 'production',
   },
+  optimization: {
+    minimizer: [new UglifyJsPlugin()],
+  },
   plugins: [
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({ filename: 'styles.css' }),
@@ -190,7 +193,6 @@ if (process.env.NODE_ENV === 'production') {
   rendererConfig.devtool = '';
 
   rendererConfig.plugins.push(
-    new MinifyPlugin(),
     new CopyWebpackPlugin([
       {
         from: path.join(__dirname, '../static'),

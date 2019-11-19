@@ -6,7 +6,7 @@ const path = require('path');
 const { dependencies } = require('../package.json');
 const webpack = require('webpack');
 
-const MinifyPlugin = require('babel-minify-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 let mainConfig = {
   entry: {
@@ -45,6 +45,9 @@ let mainConfig = {
     libraryTarget: 'commonjs2',
     path: path.join(__dirname, '../dist/electron'),
   },
+  optimization: {
+    minimizer: [new UglifyJsPlugin()],
+  },
   plugins: [new webpack.NoEmitOnErrorsPlugin()],
   // see https://github.com/SimulatedGREG/electron-vue/issues/498#issuecomment-396571887
   externals: [
@@ -73,7 +76,6 @@ if (process.env.NODE_ENV !== 'production') {
  */
 if (process.env.NODE_ENV === 'production') {
   mainConfig.plugins.push(
-    new MinifyPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"',
     })

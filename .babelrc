@@ -7,14 +7,10 @@
           "@babel/env",
           {
             "targets": {
-              "node": 7
+              "node": "current"
             }
           }
-        ],
-        "minify"
-      ],
-      "plugins": [
-        "istanbul"
+        ]
       ]
     },
     "main": {
@@ -53,8 +49,5 @@
       ]
     }
   },
-  "plugins": [
-    "@babel/transform-runtime",
-    "@babel/plugin-proposal-class-properties"
-  ]
+  "plugins": ["@babel/plugin-proposal-class-properties"]
 }
