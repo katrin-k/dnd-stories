@@ -2,37 +2,34 @@ module.exports = {
   root: true,
   env: {
     browser: true,
-    node: true,
+    node: true
   },
-  parser: 'vue-eslint-parser',
   parserOptions: {
     parser: 'babel-eslint',
-    sourceType: 'module',
+    ecmaVersion: 2018,
+    sourceType: 'module'
   },
-  extends: ['plugin:vue/recommended'],
-  plugins: ['vue'],
-  // add your custom rules here
+  extends: [
+    'eslint:recommended',
+    'plugin:vue/recommended',
+    'prettier',
+    'plugin:prettier/recommended',
+    'prettier/vue'
+  ],
+  plugins: ['vue', 'prettier'],
   rules: {
-    'vue/max-attributes-per-line': [
-      'error',
-      {
-        singleline: 1,
-        multiline: {
-          max: 1,
-          allowFirstLine: true,
-        },
-      },
-    ],
+    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
   },
   overrides: [
     {
       files: [
         '**/__tests__/*.{j,t}s?(x)',
-        '**/tests/unit/**/*.spec.{j,t}s?(x)',
+        '**/tests/unit/**/*.spec.{j,t}s?(x)'
       ],
       env: {
-        jest: true,
-      },
-    },
-  ],
+        jest: true
+      }
+    }
+  ]
 };

@@ -1,15 +1,24 @@
 {
-  "prettier.jsxBracketSameLine": true,
-  "prettier.jsxSingleQuote": true,
-  "prettier.singleQuote": true,
-  "prettier.trailingComma": "es5",
-  "eslint.autoFixOnSave": true,
-  "vetur.validation.template": false,
-  "vetur.format.enable": false,
   "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    { "language": "vue", "autoFix": true }
+    {
+      "language": "vue",
+      "autoFix": true
+    },
+    {
+      "language": "javascript",
+      "autoFix": true
+    },
+    {
+      "language": "javascriptreact",
+      "autoFix": true
+    }
   ],
-  "html.format.wrapAttributes": "force-aligned"
+  "eslint.autoFixOnSave": true,
+  "editor.formatOnSave": true,
+  "javascript.format.enable": false,
+  "vetur.validation.template": true,
+  "prettier.jsxSingleQuote": true,
+  "prettier.jsxBracketSameLine": true,
+  "prettier.singleQuote": true,
+  "editor.defaultFormatter": "prettier.prettier-vscode"
 }
