@@ -63,13 +63,7 @@
  * @param {string} $spread - spread radius
  * @param {string} $color - color
  */
-@mixin box-shadow(
-  $x: 0px,
-  $y: 6px,
-  $blur: 8px,
-  $spread: -5px,
-  $color: $black
-) {
+@mixin box-shadow($x: 0px, $y: 6px, $blur: 8px, $spread: -5px, $color: $black) {
   box-shadow: $x $y $blur $spread $color;
 }
 

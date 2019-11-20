@@ -4,9 +4,8 @@ module.exports = {
       margin: {
         auto: 'auto'
       }
-    },
-
+    }
   },
   variants: {},
   plugins: []
-}
+};

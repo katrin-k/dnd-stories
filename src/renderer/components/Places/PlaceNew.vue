@@ -7,11 +7,7 @@
       <label for="name">
         Name
       </label>
-      <input id="name"
-             v-model.lazy="place.name"
-             type="text"
-             name="name"
-      >
+      <input id="name" v-model.lazy="place.name" type="text" name="name" />
       <label for="description">Beschreibung</label>
       <textarea
         id="description"
@@ -20,16 +16,18 @@
         rows="10"
       />
       <label for="localization">Lokalisierung</label>
-      <input id="localization"
-             v-model.lazy="place.localization"
-             type="text"
-             name="localization"
-      >
+      <input
+        id="localization"
+        v-model.lazy="place.localization"
+        type="text"
+        name="localization"
+      />
 
       <ActionBar>
-        <Button text="Ort speichern"
-                type-submit
-                @click.native.prevent="saveNewPlace"
+        <Button
+          text="Ort speichern"
+          type-submit
+          @click.native.prevent="saveNewPlace"
         />
       </ActionBar>
     </form>
@@ -38,29 +36,34 @@
 
 <script>
 import { mapState } from 'vuex';
-import { Place, PlaceCategory } from '@/store/models/Place'
-import Button from '../_shared/Button'
-import ActionBar from '../_shared/ActionBar'
+import { Place } from '@/store/models/Place';
+import Button from '../_shared/Button';
+import ActionBar from '../_shared/ActionBar';
 
 export default {
   name: 'PlacesNew',
   components: { Button, ActionBar },
   computed: {
     ...mapState({
-      slotId: state => state.DynamicSlot.slotId,
+      slotId: state => state.DynamicSlot.slotId
     }),
     place() {
-      return new Place()
-    },
+      return new Place();
+    }
   },
   methods: {
     saveNewPlace() {
       Place.insert({
         data: this.place
       }).then(entities => {
-        this.$router.push({ name: 'places-detail', params: { id: entities.places[0].id } }).catch(err => {})
-      })
+        this.$router
+          .push({
+            name: 'places-detail',
+            params: { id: entities.places[0].id }
+          })
+          .catch(() => {});
+      });
     }
-  },
+  }
 };
 </script>

@@ -27,8 +27,8 @@ function createWindow() {
     useContentSize: true,
     width: 1620,
     webPreferences: {
-      nodeIntegration: true,
-    },
+      nodeIntegration: true
+    }
   });
 
   // see https://github.com/SimulatedGREG/electron-vue/issues/242

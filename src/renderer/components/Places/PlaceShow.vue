@@ -8,49 +8,47 @@
     <h3>Lokalisierung</h3>
     <p>{{ place.localization }}</p>
 
-    <hr class="border-orange-900">
+    <hr class="border-orange-900" />
 
     <ActionBar>
-      <Button text="Ort löschen"
-              @click.native="handleDeleteWish(place.id)"
-      />
+      <Button text="Ort löschen" @click.native="handleDeleteWish(place.id)" />
     </ActionBar>
   </div>
 </template>
 
 <script>
 import { mapActions, mapState } from 'vuex';
-import { Place, PlaceCategory } from '@/store/models/Place'
-import Button from '../_shared/Button'
-import ActionBar from '../_shared/ActionBar'
+import { Place } from '@/store/models/Place';
+import Button from '../_shared/Button';
+import ActionBar from '../_shared/ActionBar';
 
 export default {
   name: 'PlaceShow',
   components: { Button, ActionBar },
   computed: {
     ...mapState({
-      slotId: state => state.DynamicSlot.slotId,
+      slotId: state => state.DynamicSlot.slotId
     }),
     place() {
-      return this.slotId ? Place.find(this.slotId) : Place.find(this.$route.params.id)
-    },
+      return this.slotId
+        ? Place.find(this.slotId)
+        : Place.find(this.$route.params.id);
+    }
   },
   methods: {
-    ...mapActions([
-      'dynamicSlotDisplayComponent'
-    ]),
+    ...mapActions(['dynamicSlotDisplayComponent']),
     handleDeleteWish(id) {
-      Place.delete(id)
-      this.$router.push({ name: 'places-detail', params: { id: 'init' } }).catch(err => {})
+      Place.delete(id);
+      this.$router
+        .push({ name: 'places-detail', params: { id: 'init' } })
+        .catch(() => {});
     },
     loadComponent(event, componentName, id) {
       this.dynamicSlotDisplayComponent({
         componentName: componentName,
         slotId: id
       });
-    },
-  },
+    }
+  }
 };
-
-
 </script>

@@ -5,9 +5,9 @@ module.exports = {
     // process js with `babel-jest`
     '^.+\\.js$': 'babel-jest',
     // process `*.vue` files with `vue-jest`
-    '^.+\\.vue$': 'vue-jest',
+    '^.+\\.vue$': 'vue-jest'
   },
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/renderer/$1',
-  },
+    '^@/(.*)$': '<rootDir>/src/renderer/$1'
+  }
 };

@@ -20,17 +20,16 @@
 
 <script>
 import { mapState } from 'vuex';
-import ItemNew from './ItemNew'
-import ItemShow from './ItemShow'
+import ItemNew from './ItemNew';
+import ItemShow from './ItemShow';
 
 export default {
   name: 'ItemsDetail',
   components: { ItemNew, ItemShow },
   computed: {
     ...mapState({
-      slotId: state => state.DynamicSlot.slotId,
-    }),
-  },
+      slotId: state => state.DynamicSlot.slotId
+    })
+  }
 };
-
 </script>

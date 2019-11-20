@@ -10,7 +10,7 @@ import Header from './components/_shared/Header';
 
 export default {
   name: 'DndStories',
-  components: { Header },
+  components: { Header }
 };
 </script>
 

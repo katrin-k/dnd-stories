@@ -24,12 +24,12 @@ let whiteListedModules = ['vue'];
 let rendererConfig = {
   devtool: '#cheap-module-eval-source-map',
   entry: {
-    renderer: path.join(__dirname, '../src/renderer/main.js'),
+    renderer: path.join(__dirname, '../src/renderer/main.js')
   },
   externals: [
     ...Object.keys(dependencies || {}).filter(
       d => !whiteListedModules.includes(d)
-    ),
+    )
   ],
   module: {
     rules: [
@@ -40,9 +40,9 @@ let rendererConfig = {
         use: {
           loader: 'eslint-loader',
           options: {
-            formatter: require('eslint-friendly-formatter'),
-          },
-        },
+            formatter: require('eslint-friendly-formatter')
+          }
+        }
       },
       {
         test: /\.scss$/,
@@ -55,14 +55,14 @@ let rendererConfig = {
               prependData: `
               @import "@/assets/styles/sass-globals/_variables.scss";
               @import "@/assets/styles/sass-globals/_mixins.scss";
-            `,
-            },
-          },
-        ],
+            `
+            }
+          }
+        ]
       },
       {
         test: /\.sass$/,
-        use: ['vue-style-loader', 'css-loader', 'sass-loader?indentedSyntax'],
+        use: ['vue-style-loader', 'css-loader', 'sass-loader?indentedSyntax']
       },
       {
         test: /\.css$/,
@@ -73,23 +73,23 @@ let rendererConfig = {
             loader: 'postcss-loader',
             options: {
               ident: 'postcss',
-              plugins: [require('tailwindcss')],
-            },
-          },
-        ],
+              plugins: [require('tailwindcss')]
+            }
+          }
+        ]
       },
       {
         test: /\.html$/,
-        use: 'vue-html-loader',
+        use: 'vue-html-loader'
       },
       {
         test: /\.js$/,
         use: 'babel-loader',
-        exclude: /node_modules/,
+        exclude: /node_modules/
       },
       {
         test: /\.node$/,
-        use: 'node-loader',
+        use: 'node-loader'
       },
       {
         test: /\.vue$/,
@@ -99,10 +99,10 @@ let rendererConfig = {
             extractCSS: process.env.NODE_ENV === 'production',
             loaders: {
               sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax=1',
-              scss: 'vue-style-loader!css-loader!sass-loader',
-            },
-          },
-        },
+              scss: 'vue-style-loader!css-loader!sass-loader'
+            }
+          }
+        }
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -110,17 +110,17 @@ let rendererConfig = {
           loader: 'url-loader',
           query: {
             limit: 10000,
-            name: 'imgs/[name]--[folder].[ext]',
-          },
-        },
+            name: 'imgs/[name]--[folder].[ext]'
+          }
+        }
       },
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: 'media/[name]--[folder].[ext]',
-        },
+          name: 'media/[name]--[folder].[ext]'
+        }
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
@@ -128,18 +128,18 @@ let rendererConfig = {
           loader: 'url-loader',
           query: {
             limit: 10000,
-            name: 'fonts/[name]--[folder].[ext]',
-          },
-        },
-      },
-    ],
+            name: 'fonts/[name]--[folder].[ext]'
+          }
+        }
+      }
+    ]
   },
   node: {
     __dirname: process.env.NODE_ENV !== 'production',
-    __filename: process.env.NODE_ENV !== 'production',
+    __filename: process.env.NODE_ENV !== 'production'
   },
   optimization: {
-    minimizer: [new UglifyJsPlugin()],
+    minimizer: [new UglifyJsPlugin()]
   },
   plugins: [
     new VueLoaderPlugin(),
@@ -150,29 +150,29 @@ let rendererConfig = {
       minify: {
         collapseWhitespace: true,
         removeAttributeQuotes: true,
-        removeComments: true,
+        removeComments: true
       },
       nodeModules:
         process.env.NODE_ENV !== 'production'
           ? path.resolve(__dirname, '../node_modules')
-          : false,
+          : false
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
   ],
   output: {
     filename: '[name].js',
     libraryTarget: 'commonjs2',
-    path: path.join(__dirname, '../dist/electron'),
+    path: path.join(__dirname, '../dist/electron')
   },
   resolve: {
     alias: {
       '@': path.join(__dirname, '../src/renderer'),
-      vue$: 'vue/dist/vue.esm.js',
+      vue$: 'vue/dist/vue.esm.js'
     },
-    extensions: ['.js', '.vue', '.json', '.css', '.node'],
+    extensions: ['.js', '.vue', '.json', '.css', '.node']
   },
-  target: 'electron-renderer',
+  target: 'electron-renderer'
 };
 
 /**
@@ -181,7 +181,7 @@ let rendererConfig = {
 if (process.env.NODE_ENV !== 'production') {
   rendererConfig.plugins.push(
     new webpack.DefinePlugin({
-      __static: `"${path.join(__dirname, '../static').replace(/\\/g, '\\\\')}"`,
+      __static: `"${path.join(__dirname, '../static').replace(/\\/g, '\\\\')}"`
     })
   );
 }
@@ -197,14 +197,14 @@ if (process.env.NODE_ENV === 'production') {
       {
         from: path.join(__dirname, '../static'),
         to: path.join(__dirname, '../dist/electron/static'),
-        ignore: ['.*'],
-      },
+        ignore: ['.*']
+      }
     ]),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"production"',
+      'process.env.NODE_ENV': '"production"'
     }),
     new webpack.LoaderOptionsPlugin({
-      minimize: true,
+      minimize: true
     })
   );
 }

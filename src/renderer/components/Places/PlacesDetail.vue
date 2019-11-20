@@ -20,16 +20,16 @@
 
 <script>
 import { mapState } from 'vuex';
-import PlaceNew from './PlaceNew'
-import PlaceShow from './PlaceShow'
+import PlaceNew from './PlaceNew';
+import PlaceShow from './PlaceShow';
 
 export default {
   name: 'PlacesDetail',
   components: { PlaceNew, PlaceShow },
   computed: {
     ...mapState({
-      slotId: state => state.DynamicSlot.slotId,
-    }),
-  },
+      slotId: state => state.DynamicSlot.slotId
+    })
+  }
 };
 </script>

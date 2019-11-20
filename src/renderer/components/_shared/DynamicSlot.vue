@@ -1,20 +1,22 @@
 <template>
   <aside>
-    <Button v-if="currentComponent"
-            text="Schließen"
-            class="block ml-auto"
-            @click.native="unloadComponent"
+    <Button
+      v-if="currentComponent"
+      text="Schließen"
+      class="block ml-auto"
+      @click.native="unloadComponent"
     />
-    <component :is="currentComponent"
-               v-if="currentComponent"
-               :slot-id="slotId"
+    <component
+      :is="currentComponent"
+      v-if="currentComponent"
+      :slot-id="slotId"
     />
   </aside>
 </template>
 
 <script>
 import { mapState } from 'vuex';
-import Button from './Button'
+import Button from './Button';
 
 export default {
   name: 'DynamicSlot',
@@ -22,13 +24,13 @@ export default {
   computed: {
     ...mapState({
       currentComponent: state => state.DynamicSlot.currentComponent,
-      slotId: state => state.DynamicSlot.slotId,
+      slotId: state => state.DynamicSlot.slotId
     })
   },
   methods: {
-    unloadComponent(){
+    unloadComponent() {
       this.$store.dispatch('dynamicSlotDisplayComponent', {});
     }
-  },
-}
+  }
+};
 </script>

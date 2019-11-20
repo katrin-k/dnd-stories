@@ -4,9 +4,7 @@
       <h1 class="text-4xl">
         Items
       </h1>
-      <p class="mx-4">
-        Route path: {{ $route.path }}
-      </p>
+      <p class="mx-4">Route path: {{ $route.path }}</p>
     </div>
     <router-view name="sidebar" />
     <router-view name="main" />
@@ -19,6 +17,6 @@ import DynamicSlot from '../components/_shared/DynamicSlot';
 
 export default {
   name: 'ItemsPage',
-  components: {DynamicSlot}
+  components: { DynamicSlot }
 };
 </script>

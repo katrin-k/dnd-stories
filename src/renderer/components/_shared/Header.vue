@@ -1,10 +1,11 @@
 <template>
   <header class="header">
     <div class="header__logo-wrapper">
-      <img src="../../assets/img/logo-dnd-fullname.png"
-           alt="Dnd-Logo"
-           class="header__logo"
-      >
+      <img
+        src="../../assets/img/logo-dnd-fullname.png"
+        alt="Dnd-Logo"
+        class="header__logo"
+      />
     </div>
     <Navigation />
     <button class="header__settings">
@@ -18,7 +19,7 @@ import Navigation from './Navigation';
 
 export default {
   name: 'Header',
-  components: { Navigation },
+  components: { Navigation }
 };
 </script>
 

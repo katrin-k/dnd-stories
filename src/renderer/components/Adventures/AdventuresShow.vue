@@ -19,19 +19,21 @@
         <label for="title">
           Title
         </label>
-        <input id="title"
-               v-model.lazy="adventure.title"
-               type="text"
-               name="title"
-        >
+        <input
+          id="title"
+          v-model.lazy="adventure.title"
+          type="text"
+          name="title"
+        />
         <label for="level">
           Level
         </label>
-        <input id="level"
-               v-model.lazy="adventure.level"
-               type="text"
-               name="level"
-        >
+        <input
+          id="level"
+          v-model.lazy="adventure.level"
+          type="text"
+          name="level"
+        />
         <label for="introduction">Introduction</label>
         <textarea
           id="introduction"
@@ -55,9 +57,10 @@
         />
 
         <ActionBar>
-          <Button text="Abenteuer speichern"
-                  type-submit
-                  @click.native.prevent="handleSave"
+          <Button
+            text="Abenteuer speichern"
+            type-submit
+            @click.native.prevent="handleSave"
           />
         </ActionBar>
       </form>
@@ -65,12 +68,8 @@
 
     <div v-if="typeof this.$route.params.id === 'number'">
       <ActionBar>
-        <Button text="Bearbeiten"
-                @click.native="handleEditWish"
-        />
-        <Button text="Löschen"
-                @click.native="handleDeleteWish(adventure.id)"
-        />
+        <Button text="Bearbeiten" @click.native="handleEditWish" />
+        <Button text="Löschen" @click.native="handleDeleteWish(adventure.id)" />
       </ActionBar>
 
       <h2 class="text-2xl">
@@ -89,9 +88,9 @@
 
 <script>
 import { mapActions } from 'vuex';
-import Adventure from '@/store/models/Adventure'
-import Button from '../_shared/Button'
-import ActionBar from '../_shared/ActionBar'
+import Adventure from '@/store/models/Adventure';
+import Button from '../_shared/Button';
+import ActionBar from '../_shared/ActionBar';
 
 export default {
   name: 'AdventuresShow',
@@ -104,47 +103,45 @@ export default {
   },
   beforeRouteUpdate: function(to, from, next) {
     if (to.params.id !== 'init') {
-      this.fetchAdventure(to.params.id).then((response) => {
-        this.adventure = response;
-      },(error) => {
-        console.error("Failed!", error);
-      })
+      this.fetchAdventure(to.params.id).then(
+        response => {
+          this.adventure = response;
+        },
+        error => {
+          console.error('Failed!', error);
+        }
+      );
     }
-    next()
+    next();
   },
   beforeUpdate() {
     if (this.$route.params.id === 'new') {
-      this.isEditing = true
+      this.isEditing = true;
     }
   },
   methods: {
-    ...mapActions([
-      'dynamicSlotDisplayComponent'
-    ]),
-    fetchAdventure(id) {
-      return new Promise( (resolve, reject) => {
-        let adv;
-        (id === 'new')
-          ? adv = new Adventure()
-          : adv = Adventure.find(id);
-        if (adv) {
+    ...mapActions(['dynamicSlotDisplayComponent']),
+    fetchAdventure(id) {
+      return new Promise((resolve, reject) => {
+        let adv;
+        id === 'new' ? (adv = new Adventure()) : (adv = Adventure.find(id));
+        if (adv) {
           resolve(adv);
+        } else {
+          reject(Error('It broke'));
         }
-        else {
-          reject(Error("It broke"));
-        }
-      })
+      });
     },
     handleSave() {
       if (this.$route.params.id === 'new') {
-        this.saveNewAdventure()
+        this.saveNewAdventure();
       } else if (typeof this.$route.params.id === 'number') {
-          this.updateAdventure()
+        this.updateAdventure();
       } else {
         // TODO: Display error on screen
         console.error('There was an error saving this adventure');
       }
-      this.isEditing = false
+      this.isEditing = false;
     },
     saveNewAdventure() {
       this.adventure.$save(this.adventure);
@@ -153,23 +150,23 @@ export default {
       // Adventure.dispatch('update', { data: this.adventure })
       // this.$store.dispatch('entities/adventures/update', this.adventure)
       // Adventure.update({ where: this.adventure.id , data: this.adventure })
-      this.adventure.$update(this.adventure)
+      this.adventure.$update(this.adventure);
     },
     handleEditWish() {
-      this.isEditing = true
+      this.isEditing = true;
     },
     handleDeleteWish(id) {
-      Adventure.delete(id)
-      this.$router.push({ name: 'adventures-details', params: { id: 'init' } }).catch(err => {})
+      Adventure.delete(id);
+      this.$router
+        .push({ name: 'adventures-details', params: { id: 'init' } })
+        .catch(() => {});
     },
     loadComponent(event, componentName, id) {
       this.dynamicSlotDisplayComponent({
         componentName: componentName,
         slotId: id
       });
-    },
-  },
+    }
+  }
 };
-
-
 </script>

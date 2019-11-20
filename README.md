@@ -8,7 +8,7 @@ and pieces to create adventures for the group.
 
 #### Build Setup
 
-``` bash
+```bash
 # install dependencies
 npm install
 

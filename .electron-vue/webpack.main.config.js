@@ -10,7 +10,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 let mainConfig = {
   entry: {
-    main: path.join(__dirname, '../src/main/index.js'),
+    main: path.join(__dirname, '../src/main/index.js')
   },
   module: {
     rules: [
@@ -21,43 +21,43 @@ let mainConfig = {
         use: {
           loader: 'eslint-loader',
           options: {
-            formatter: require('eslint-friendly-formatter'),
-          },
-        },
+            formatter: require('eslint-friendly-formatter')
+          }
+        }
       },
       {
         test: /\.js$/,
         use: 'babel-loader',
-        exclude: /node_modules/,
+        exclude: /node_modules/
       },
       {
         test: /\.node$/,
-        use: 'node-loader',
-      },
-    ],
+        use: 'node-loader'
+      }
+    ]
   },
   node: {
     __dirname: process.env.NODE_ENV !== 'production',
-    __filename: process.env.NODE_ENV !== 'production',
+    __filename: process.env.NODE_ENV !== 'production'
   },
   output: {
     filename: '[name].js',
     libraryTarget: 'commonjs2',
-    path: path.join(__dirname, '../dist/electron'),
+    path: path.join(__dirname, '../dist/electron')
   },
   optimization: {
-    minimizer: [new UglifyJsPlugin()],
+    minimizer: [new UglifyJsPlugin()]
   },
   plugins: [new webpack.NoEmitOnErrorsPlugin()],
   // see https://github.com/SimulatedGREG/electron-vue/issues/498#issuecomment-396571887
   externals: [
     ...Object.keys(dependencies || {}),
-    { 'electron-debug': 'electron-debug' },
+    { 'electron-debug': 'electron-debug' }
   ],
   resolve: {
-    extensions: ['.js', '.json', '.node'],
+    extensions: ['.js', '.json', '.node']
   },
-  target: 'electron-main',
+  target: 'electron-main'
 };
 
 /**
@@ -66,7 +66,7 @@ let mainConfig = {
 if (process.env.NODE_ENV !== 'production') {
   mainConfig.plugins.push(
     new webpack.DefinePlugin({
-      __static: `"${path.join(__dirname, '../static').replace(/\\/g, '\\\\')}"`,
+      __static: `"${path.join(__dirname, '../static').replace(/\\/g, '\\\\')}"`
     })
   );
 }
@@ -77,7 +77,7 @@ if (process.env.NODE_ENV !== 'production') {
 if (process.env.NODE_ENV === 'production') {
   mainConfig.plugins.push(
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"production"',
+      'process.env.NODE_ENV': '"production"'
     })
   );
 }

@@ -20,7 +20,7 @@ import AdventuresShow from '../components/Adventures/AdventuresShow';
 
 // Register components
 import PlaceShow from '../components/Places/PlaceShow.vue';
-Vue.component('place-show', PlaceShow)
+Vue.component('place-show', PlaceShow);
 
 Vue.use(Router);
 
@@ -29,64 +29,68 @@ const router = new Router({
     {
       path: '/',
       name: 'landing-page',
-      component: LandingPage,
-
+      component: LandingPage
     },
     {
       path: '/creatures',
       name: 'creatures-index',
-      component: CreaturesIndex,
+      component: CreaturesIndex
     },
     {
       path: '/items',
       name: 'items-page',
       component: ItemsPage,
-      children: [{
-        path: ':id',
-        name: 'items-details',
-        components: {
-          sidebar: ItemsIndex,
-          main: ItemsDetail
+      children: [
+        {
+          path: ':id',
+          name: 'items-details',
+          components: {
+            sidebar: ItemsIndex,
+            main: ItemsDetail
+          }
         }
-      }]
+      ]
     },
     {
       path: 'places',
       name: 'places-page',
       component: PlacesPage,
-      children: [{
-        path: ':id',
-        name: 'places-detail',
-        components: {
-          sidebar: PlacesIndex,
-          main: PlacesDetail,
+      children: [
+        {
+          path: ':id',
+          name: 'places-detail',
+          components: {
+            sidebar: PlacesIndex,
+            main: PlacesDetail
+          }
         }
-      }]
+      ]
     },
     {
       path: '/adventures',
       name: 'adventures-page',
       component: AdventuresPage,
-      children: [{
-        path: ':id',
-        name: 'adventures-details',
-        components: {
-          sidebar: AdventuresIndex,
-          main: AdventuresShow,
+      children: [
+        {
+          path: ':id',
+          name: 'adventures-details',
+          components: {
+            sidebar: AdventuresIndex,
+            main: AdventuresShow
+          }
         }
-      }]
+      ]
     },
     {
       path: '*',
-      redirect: '/',
-    },
-  ],
+      redirect: '/'
+    }
+  ]
 });
 
 router.beforeEach((to, from, next) => {
-  to.name !== from.name
-    && store.dispatch('dynamicSlotDisplayComponent', null);
+  to.name !== from.name && store.dispatch('dynamicSlotDisplayComponent', null);
   next();
-})
+});
 
-export default router
+export default router;

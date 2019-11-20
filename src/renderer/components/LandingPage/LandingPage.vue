@@ -1,9 +1,6 @@
 <template>
   <div id="wrapper">
-    <img id="logo"
-         src="~@/assets/img/logo.png"
-         alt="electron-vue"
-    >
+    <img id="logo" src="~@/assets/img/logo.png" alt="electron-vue" />
     <main>
       <div class="left-side">
         <span class="title">Welcome to your new project!</span>
@@ -27,21 +24,17 @@
           >
             Read the Docs
           </button>
-          <br>
-          <br>
+          <br />
+          <br />
         </div>
         <div class="doc">
           <div class="title alt">
             Other Documentation
           </div>
-          <button class="alt"
-                  @click="open('https://electron.atom.io/docs/')"
-          >
+          <button class="alt" @click="open('https://electron.atom.io/docs/')">
             Electron
           </button>
-          <button class="alt"
-                  @click="open('https://vuejs.org/v2/guide/')"
-          >
+          <button class="alt" @click="open('https://vuejs.org/v2/guide/')">
             Vue.js
           </button>
         </div>
@@ -59,14 +52,12 @@ export default {
   methods: {
     open(link) {
       this.$electron.shell.openExternal(link);
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style>
-
-
 #wrapper {
   padding: 60px 80px;
 }

@@ -2,29 +2,27 @@
   <nav aria-label="Hauptmenü">
     <ul class="nav-main">
       <li>
-        <router-link :to="{ name: 'landing-page' }"
-                     class="nav-main__link"
-        >
+        <router-link :to="{ name: 'landing-page' }" class="nav-main__link">
           Home
         </router-link>
       </li>
       <li>
-        <router-link :to="{ name: 'creatures-index' }"
-                     class="nav-main__link"
-        >
+        <router-link :to="{ name: 'creatures-index' }" class="nav-main__link">
           Creatures
         </router-link>
       </li>
       <li>
-        <router-link :to="{ name: 'items-details', params: { id: 'init' } }"
-                     class="nav-main__link"
+        <router-link
+          :to="{ name: 'items-details', params: { id: 'init' } }"
+          class="nav-main__link"
         >
           Items
         </router-link>
       </li>
       <li>
-        <router-link :to="{ name: 'places-detail', params: { id: 'init' } }"
-                     class="nav-main__link"
+        <router-link
+          :to="{ name: 'places-detail', params: { id: 'init' } }"
+          class="nav-main__link"
         >
           Orte
         </router-link>
@@ -43,7 +41,7 @@
 
 <script>
 export default {
-  name: 'Navigation',
+  name: 'Navigation'
 };
 </script>
 

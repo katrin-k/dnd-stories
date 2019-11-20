@@ -4,6 +4,6 @@
 
 <script>
 export default {
-  name: 'CreaturesIndex',
+  name: 'CreaturesIndex'
 };
 </script>

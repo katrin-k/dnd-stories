@@ -12,7 +12,7 @@ if (!process.env.IS_WEB) Vue.use(require('vue-electron'));
 Vue.config.productionTip = false;
 Vue.config.devtools = true;
 
-Vue.component('multiselect', Multiselect)
+Vue.component('multiselect', Multiselect);
 
 /* eslint-disable no-new */
 new Vue({
@@ -20,4 +20,4 @@ new Vue({
   router,
   store,
   render: h => h(App)
-})
+});

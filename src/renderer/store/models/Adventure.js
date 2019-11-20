@@ -1,8 +1,8 @@
-import { Model } from '@vuex-orm/core'
-import { Place, AdvPlace } from './Place'
+import { Model } from '@vuex-orm/core';
+import { Place, AdvPlace } from './Place';
 
 export default class Adventure extends Model {
-  static entity = 'adventures'
+  static entity = 'adventures';
 
   static fields() {
     return {
@@ -13,6 +13,6 @@ export default class Adventure extends Model {
       background: this.string(''),
       notes: this.string(''),
       places: this.belongsToMany(Place, AdvPlace, 'adv_id', 'place_id')
-    }
+    };
   }
 }

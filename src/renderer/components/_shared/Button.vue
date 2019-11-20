@@ -1,6 +1,11 @@
 <template>
   <button
-    :class="{ 'btn-text': textButton, 'btn': !textButton, 'btn-tag': tagStyle, 'btn-submit': typeSubmit }"
+    :class="{
+      'btn-text': textButton,
+      btn: !textButton,
+      'btn-tag': tagStyle,
+      'btn-submit': typeSubmit
+    }"
     :type="typeSubmit ? 'submit' : 'button'"
   >
     {{ text }}
@@ -28,7 +33,7 @@ export default {
       default: false
     }
   }
-}
+};
 </script>
 
 <style>
@@ -53,7 +58,6 @@ export default {
 }
 .btn-submit {
   @apply block w-full p-2 bg-orange-800 text-orange-300;
-
 }
 .btn-submit:hover,
 .btn-submit:focus {
