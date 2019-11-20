@@ -4,7 +4,7 @@ import AdventuresIndex from "@/components/Adventures/AdventuresIndex.vue";
 import Button from "@/components/_shared/Button.vue";
 
 // see models/__mocks__ directory
-jest.mock("@/models/Adventure");
+jest.mock("@/store/models/Adventure");
 
 const localVue = createLocalVue();
 localVue.use(VueRouter);

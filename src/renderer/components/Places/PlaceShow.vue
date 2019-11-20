@@ -20,7 +20,7 @@
 
 <script>
 import { mapActions, mapState } from 'vuex';
-import { Place, PlaceCategory } from '@/models/Place'
+import { Place, PlaceCategory } from '@/store/models/Place'
 import Button from '../_shared/Button'
 import ActionBar from '../_shared/ActionBar'
 

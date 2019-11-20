@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { ItemCategory } from '@/models/Item'
+import { ItemCategory } from '@/store/models/Item'
 import Button from '../_shared/Button'
 import ActionBar from '../_shared/ActionBar'
 

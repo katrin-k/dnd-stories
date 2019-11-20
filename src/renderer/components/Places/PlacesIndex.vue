@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { Place } from '@/models/Place'
+import { Place } from '@/store/models/Place'
 import Button from '../_shared/Button'
 import ActionBar from '../_shared/ActionBar'
 

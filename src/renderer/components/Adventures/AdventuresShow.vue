@@ -89,7 +89,7 @@
 
 <script>
 import { mapActions } from 'vuex';
-import Adventure from '@/models/Adventure'
+import Adventure from '@/store/models/Adventure'
 import Button from '../_shared/Button'
 import ActionBar from '../_shared/ActionBar'
 

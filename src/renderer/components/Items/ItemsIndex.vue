@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import {Item} from '@/models/Item'
+import {Item} from '@/store/models/Item'
 import ItemCategories from './ItemCategories'
 import Button from '../_shared/Button'
 import ActionBar from '../_shared/ActionBar'

@@ -53,8 +53,8 @@
 
 <script>
 import { mapActions } from 'vuex';
-import { Item, ItemCategory, PlaceItem } from '@/models/Item'
-import { Place } from '@/models/Place'
+import { Item, ItemCategory, PlaceItem } from '@/store/models/Item'
+import { Place } from '@/store/models/Place'
 import Button from '../_shared/Button'
 import ActionBar from '../_shared/ActionBar'
 import RelatedDataList from '../_shared/RelatedDataList'
