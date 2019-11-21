@@ -29,30 +29,17 @@
         type="checkbox"
         name="is_collected"
       />
+
       <!-- TODO: check for required -->
-      <!-- <select v-model="item.category_id"
-              required
-      >
-        <option disabled
-                value=""
-        >
-          Kategorie
-        </option>
-        <option v-for="cat in itemCategories"
-                :key="cat.item_cat_id"
-                :value="cat.item_cat_id"
-        >
-          {{ cat.name }} {{ cat.item_cat_id }}
-        </option>
-      </select> -->
       <multiselect
         :value="item.category_id"
         :options="itemCategories"
         placeholder="Please select..."
         track-by="item_cat_id"
         label="name"
-        @input="object => (item.category_id = object.item_cat_id)"
+        @input="handleCategorySelect"
       />
+
       <ActionBar>
         <Button
           text="Item speichern"
@@ -73,36 +60,31 @@ export default {
   name: 'ItemNew',
   components: { Button, ActionBar },
   computed: {
-    item() {
-      return new Item();
+    item: {
+      get: function() {
+        return new Item();
+      },
+      set: function(newValue) {
+        this.item.category_id = newValue;
+        return this.item;
+      }
     },
     itemCategories() {
       return ItemCategory.all();
-    },
-    itemCategory() {
-      const name = ItemCategory.query()
-        .whereId(parseInt(this.item.category_id))
-        .get();
-      return name[0];
     }
   },
   methods: {
     saveNewItem() {
-      if (this.item.category_id) {
-        this.addCategoryToItem();
-      }
-
-      Item.insert({
-        data: this.item,
-        update: ['itemCategory']
+      Item.insertOrUpdate({
+        data: this.item
       }).then(entities => {
         this.$router
           .push({ name: 'items-details', params: { id: entities.items[0].id } })
           .catch(() => {});
       });
     },
-    addCategoryToItem() {
-      this.item.category = this.itemCategory;
+    handleCategorySelect(object) {
+      this.item = object.item_cat_id.toString();
     }
   }
 };
