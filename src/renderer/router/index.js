@@ -20,7 +20,9 @@ import AdventuresShow from '../components/Adventures/AdventuresShow';
 
 // Register components
 import PlaceShow from '../components/Places/PlaceShow.vue';
+import ItemShow from '../components/Items/ItemShow.vue';
 Vue.component('place-show', PlaceShow);
+Vue.component('item-show', ItemShow);
 
 Vue.use(Router);
 
