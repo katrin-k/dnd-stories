@@ -89,7 +89,7 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  to.name !== from.name && store.dispatch('dynamicSlotDisplayComponent', null);
+  to.path !== from.path && store.dispatch('dynamicSlotDisplayComponent', null);
   next();
 });
 
