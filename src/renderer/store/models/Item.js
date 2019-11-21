@@ -21,14 +21,14 @@ export class Item extends Model {
   static fields() {
     return {
       id: this.increment(),
-      name: this.string('default name'),
+      name: this.string(''),
       description: this.string(''),
       quantity: this.number(1),
       is_collected: this.boolean(false),
       // FK of IC
       category_id: this.string(''),
       category: this.belongsTo(ItemCategory, 'category_id', 'item_cat_id'),
-      places: this.belongsToMany(Place, PlaceItem, 'place_id', 'item_id')
+      places: this.belongsToMany(Place, PlaceItem, 'item_id', 'place_id')
     };
   }
 }
@@ -40,6 +40,7 @@ export class PlaceItem extends Model {
 
   static fields() {
     return {
+      id: this.increment(),
       place_id: this.attr(null),
       item_id: this.attr(null)
     };

@@ -6,7 +6,9 @@
     <h3>Lokalisierung</h3>
     <p>{{ item.localization }}</p>
     <h3>Kategorie</h3>
-    <p v-if="itemCategory">{{ item.category_id }} - {{ itemCategory.name }}</p>
+    <p v-if="item.category_id">
+      {{ item.category_id }} - {{ item.category.name }}
+    </p>
 
     <h3>Verwandte Orte</h3>
     <RelatedDataList v-if="item.places.length > 0">
@@ -16,6 +18,8 @@
           tag-style
           @click.native="loadComponent($event, 'place-show', place.id)"
         />
+
+        <Button text="X" @click.native="deleteRelatedPlace(place.id)" />
       </li>
     </RelatedDataList>
 
@@ -40,14 +44,14 @@
     <hr class="border-orange-900" />
 
     <ActionBar>
-      <Button text="Item löschen" @click.native="handleDeleteWish(item.id)" />
+      <Button text="Item löschen" @click.native="deleteItem(item.id)" />
     </ActionBar>
   </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
-import { Item, ItemCategory } from '@/store/models/Item';
+import { Item, PlaceItem } from '@/store/models/Item';
 import { Place } from '@/store/models/Place';
 import Button from '../_shared/Button';
 import ActionBar from '../_shared/ActionBar';
@@ -63,13 +67,10 @@ export default {
   },
   computed: {
     item() {
-      return Item.find(this.$route.params.id);
-    },
-    itemCategory() {
-      const name = ItemCategory.query()
-        .whereId(parseInt(this.item.category_id))
-        .get();
-      return name[0];
+      return Item.query()
+        .withAll()
+        .whereId(this.$route.params.id)
+        .first();
     },
     places() {
       return Place.all();
@@ -77,35 +78,28 @@ export default {
   },
   methods: {
     ...mapActions(['dynamicSlotDisplayComponent']),
-    handleDeleteWish(id) {
+    deleteItem(id) {
       Item.delete(id);
       this.$router
         .push({ name: 'items-details', params: { id: 'init' } })
         .catch(() => {});
     },
+    deleteRelatedPlace(placeId) {
+      PlaceItem.delete([placeId, this.item.id]);
+    },
     showAddPlace() {
       this.editingPlace = true;
-    },
-    handleAddPlace() {
-      Item.update({
-        data: this.item
-      }).then(() => {
-        this.editingPlace = false;
-      });
     },
     addPlacetoItem(newPlace) {
       const prevPlaces = this.item.places;
 
-      Item.update({
-        where: this.item.id,
+      Item.insertOrUpdate({
         data: {
+          ...this.item,
           places: [...prevPlaces, newPlace]
         }
       }).then(() => {
         this.editingPlace = false;
-        this.$router
-          .push({ name: 'items-details', params: { id: this.item.id } })
-          .catch(() => {});
       });
     },
     loadComponent(event, componentName, id) {
