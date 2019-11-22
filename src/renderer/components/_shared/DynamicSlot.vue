@@ -10,6 +10,7 @@
       :is="currentComponent"
       v-if="currentComponent"
       :slot-id="slotId"
+      slot-mode
     />
   </aside>
 </template>

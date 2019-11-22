@@ -12,24 +12,18 @@
       <PlaceNew />
     </div>
 
-    <div v-if="slotId || typeof this.$route.params.id === 'number'">
+    <div v-if="typeof this.$route.params.id === 'number'">
       <PlaceShow />
     </div>
   </main>
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import PlaceNew from './PlaceNew';
 import PlaceShow from './PlaceShow';
 
 export default {
   name: 'PlacesDetail',
-  components: { PlaceNew, PlaceShow },
-  computed: {
-    ...mapState({
-      slotId: state => state.DynamicSlot.slotId
-    })
-  }
+  components: { PlaceNew, PlaceShow }
 };
 </script>

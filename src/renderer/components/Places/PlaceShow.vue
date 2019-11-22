@@ -23,14 +23,14 @@
 
     <hr class="border-orange-900" />
 
-    <ActionBar v-if="!slotId">
+    <ActionBar v-if="!slotMode">
       <Button text="Ort löschen" @click.native="deletePlace(place.id)" />
     </ActionBar>
   </div>
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import { mapActions } from 'vuex';
 import { Place } from '@/store/models/Place';
 import { PlaceItem } from '@/store/models/Item';
 import Button from '../_shared/Button';
@@ -40,14 +40,21 @@ import RelatedDataList from '../_shared/RelatedDataList';
 export default {
   name: 'PlaceShow',
   components: { Button, ActionBar, RelatedDataList },
+  props: {
+    slotId: {
+      type: Number,
+      default: null
+    },
+    slotMode: {
+      type: Boolean,
+      default: false
+    }
+  },
   computed: {
-    ...mapState({
-      slotId: state => state.DynamicSlot.slotId
-    }),
     place() {
       return Place.query()
         .with('items')
-        .whereId(this.slotId ? this.slotId : this.$route.params.id)
+        .whereId(this.slotMode ? this.slotId : this.$route.params.id)
         .first();
     }
   },

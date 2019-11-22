@@ -12,24 +12,19 @@
       <ItemNew />
     </div>
 
-    <div v-if="slotId || typeof this.$route.params.id === 'number'">
+    <div v-if="typeof this.$route.params.id === 'number'">
       <ItemShow />
     </div>
   </main>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+// import { mapState } from 'vuex';
 import ItemNew from './ItemNew';
 import ItemShow from './ItemShow';
 
 export default {
   name: 'ItemsDetail',
-  components: { ItemNew, ItemShow },
-  computed: {
-    ...mapState({
-      slotId: state => state.DynamicSlot.slotId
-    })
-  }
+  components: { ItemNew, ItemShow }
 };
 </script>

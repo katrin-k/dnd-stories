@@ -43,7 +43,7 @@
 
     <hr class="border-orange-900" />
 
-    <ActionBar>
+    <ActionBar v-if="!slotMode">
       <Button text="Item löschen" @click.native="deleteItem(item.id)" />
     </ActionBar>
   </div>
@@ -60,6 +60,16 @@ import RelatedDataList from '../_shared/RelatedDataList';
 export default {
   name: 'ItemShow',
   components: { Button, ActionBar, RelatedDataList },
+  props: {
+    slotId: {
+      type: Number,
+      default: null
+    },
+    slotMode: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       editingPlace: false
@@ -69,7 +79,7 @@ export default {
     item() {
       return Item.query()
         .withAll()
-        .whereId(this.$route.params.id)
+        .whereId(this.slotMode ? this.slotId : this.$route.params.id)
         .first();
     },
     places() {

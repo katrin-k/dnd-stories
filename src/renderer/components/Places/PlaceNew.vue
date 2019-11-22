@@ -35,7 +35,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import { Place } from '@/store/models/Place';
 import Button from '../_shared/Button';
 import ActionBar from '../_shared/ActionBar';
@@ -43,14 +42,6 @@ import ActionBar from '../_shared/ActionBar';
 export default {
   name: 'PlacesNew',
   components: { Button, ActionBar },
-  computed: {
-    ...mapState({
-      slotId: state => state.DynamicSlot.slotId
-    }),
-    place() {
-      return new Place();
-    }
-  },
   methods: {
     saveNewPlace() {
       Place.insert({
