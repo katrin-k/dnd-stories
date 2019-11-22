@@ -42,6 +42,11 @@ import ActionBar from '../_shared/ActionBar';
 export default {
   name: 'PlacesNew',
   components: { Button, ActionBar },
+  computed: {
+    place() {
+      return new Place();
+    }
+  },
   methods: {
     saveNewPlace() {
       Place.insert({
