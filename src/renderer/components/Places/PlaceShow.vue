@@ -24,7 +24,7 @@
     <hr class="border-orange-900" />
 
     <ActionBar v-if="!slotMode">
-      <Button text="Ort löschen" @click.native="deletePlace(place.id)" />
+      <Button text="Ort löschen" @click.native="handleDeletePlace(place.id)" />
     </ActionBar>
   </div>
 </template>
@@ -60,6 +60,13 @@ export default {
   },
   methods: {
     ...mapActions(['dynamicSlotDisplayComponent']),
+    handleDeletePlace(placeId) {
+      this.place.items.length > 0 &&
+        this.place.items.forEach(relatedItem =>
+          this.deleteItemRelation(relatedItem.id)
+        );
+      this.deletePlace(placeId);
+    },
     deletePlace(id) {
       Place.delete(id);
       this.$router

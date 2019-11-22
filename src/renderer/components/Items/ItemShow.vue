@@ -19,7 +19,7 @@
           @click.native="loadComponent($event, 'place-show', place.id)"
         />
 
-        <Button text="X" @click.native="deleteRelatedPlace(place.id)" />
+        <Button text="X" @click.native="deletePlaceRelation(place.id)" />
       </li>
     </RelatedDataList>
 
@@ -44,7 +44,7 @@
     <hr class="border-orange-900" />
 
     <ActionBar v-if="!slotMode">
-      <Button text="Item löschen" @click.native="deleteItem(item.id)" />
+      <Button text="Item löschen" @click.native="handleDeleteItem(item.id)" />
     </ActionBar>
   </div>
 </template>
@@ -88,13 +88,20 @@ export default {
   },
   methods: {
     ...mapActions(['dynamicSlotDisplayComponent']),
+    handleDeleteItem(itemId) {
+      this.item.places.length > 0 &&
+        this.item.places.forEach(relatedPlace =>
+          this.deletePlaceRelation(relatedPlace.id)
+        );
+      this.deleteItem(itemId);
+    },
     deleteItem(id) {
       Item.delete(id);
       this.$router
         .push({ name: 'items-details', params: { id: 'init' } })
         .catch(() => {});
     },
-    deleteRelatedPlace(placeId) {
+    deletePlaceRelation(placeId) {
       PlaceItem.delete([placeId, this.item.id]);
     },
     showAddPlace() {
