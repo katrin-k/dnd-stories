@@ -8,10 +8,6 @@
       <p>Wähle ein Item aus.</p>
     </div>
 
-    <div v-if="this.$route.params.id === 'new'">
-      <ItemNew />
-    </div>
-
     <div v-if="typeof this.$route.params.id === 'number'">
       <ItemShow />
     </div>
@@ -19,12 +15,10 @@
 </template>
 
 <script>
-// import { mapState } from 'vuex';
-import ItemNew from './ItemNew';
 import ItemShow from './ItemShow';
 
 export default {
   name: 'ItemsDetail',
-  components: { ItemNew, ItemShow }
+  components: { ItemShow }
 };
 </script>

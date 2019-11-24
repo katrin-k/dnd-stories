@@ -1,14 +1,35 @@
 <template>
   <div>
     <h2 class="text-2xl">{{ item.name }} | {{ item.id }}</h2>
-    <h3>Beschreibung</h3>
-    <p>{{ item.description }}</p>
-    <h3>Lokalisierung</h3>
-    <p>{{ item.localization }}</p>
-    <h3>Kategorie</h3>
-    <p v-if="item.category_id">
-      {{ item.category_id }} - {{ item.category.name }}
-    </p>
+
+    <ActionBar v-if="!slotMode">
+      <Button
+        v-if="!isEditing"
+        text="Item bearbeiten"
+        @click.native="handleEditItem"
+      />
+      <Button
+        v-else
+        text="Item bearbeiten abbrechen"
+        @click.native="handleEditItem"
+      />
+    </ActionBar>
+
+    <ItemForm
+      v-if="isEditing"
+      :item="item"
+      @change-edit-state="handleEditItem"
+    />
+    <div v-else>
+      <h3>Beschreibung</h3>
+      <p>{{ item.description }}</p>
+      <h3>Lokalisierung</h3>
+      <p>{{ item.localization }}</p>
+      <h3>Kategorie</h3>
+      <p v-if="item.category_id">
+        {{ item.category_id }} - {{ item.category.name }}
+      </p>
+    </div>
 
     <h3>Verwandte Orte</h3>
     <RelatedDataList v-if="item.places.length > 0">
@@ -56,10 +77,11 @@ import { Place } from '@/store/models/Place';
 import Button from '../_shared/Button';
 import ActionBar from '../_shared/ActionBar';
 import RelatedDataList from '../_shared/RelatedDataList';
+import ItemForm from './ItemForm';
 
 export default {
   name: 'ItemShow',
-  components: { Button, ActionBar, RelatedDataList },
+  components: { ItemForm, Button, ActionBar, RelatedDataList },
   props: {
     slotId: {
       type: Number,
@@ -72,6 +94,7 @@ export default {
   },
   data() {
     return {
+      isEditing: false,
       editingPlace: false
     };
   },
@@ -84,6 +107,11 @@ export default {
     },
     places() {
       return Place.all();
+    }
+  },
+  created() {
+    if (this.$route.params.isEditing) {
+      this.isEditing = true;
     }
   },
   methods: {
@@ -118,6 +146,9 @@ export default {
       }).then(() => {
         this.editingPlace = false;
       });
+    },
+    handleEditItem() {
+      this.isEditing = !this.isEditing;
     },
     loadComponent(event, componentName, id) {
       this.dynamicSlotDisplayComponent({

@@ -3,9 +3,9 @@
     <h2 class="text-2xl">
       All items
     </h2>
-    <ActionBar>
-      <Button text="New Item" @click.native="loadItem($event, 'new')" />
-    </ActionBar>
+
+    <ItemNew />
+
     <ul class="mt-4">
       <li v-for="item in items" :key="item.$id" class="mb-2">
         <Button
@@ -15,19 +15,20 @@
         />
       </li>
     </ul>
+
     <ItemCategories />
   </aside>
 </template>
 
 <script>
 import { Item } from '@/store/models/Item';
+import ItemNew from './ItemNew';
 import ItemCategories from './ItemCategories';
 import Button from '../_shared/Button';
-import ActionBar from '../_shared/ActionBar';
 
 export default {
   name: 'ItemsIndex',
-  components: { ItemCategories, Button, ActionBar },
+  components: { ItemNew, ItemCategories, Button },
   computed: {
     items() {
       return Item.all();
