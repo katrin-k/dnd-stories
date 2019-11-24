@@ -23,6 +23,7 @@ export class Item extends Model {
       id: this.increment(),
       name: this.string(''),
       description: this.string(''),
+      // TODO: remove quantity
       quantity: this.number(1),
       is_collected: this.boolean(false),
       // FK of IC
@@ -43,6 +44,7 @@ export class PlaceItem extends Model {
       id: this.increment(),
       place_id: this.attr(null),
       item_id: this.attr(null)
+      // TODO: add field itemsAtThisPlace: this.number(1)
     };
   }
 }
