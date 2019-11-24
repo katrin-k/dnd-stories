@@ -1,36 +1,17 @@
 <template>
   <div>
-    <h2 class="text-2xl">
-      Neuer Ort
-    </h2>
-    <form>
-      <label for="name">
-        Name
-      </label>
-      <input id="name" v-model.lazy="place.name" type="text" name="name" />
-      <label for="description">Beschreibung</label>
-      <textarea
-        id="description"
-        v-model.lazy="place.description"
-        name="description"
-        rows="10"
-      />
-      <label for="localization">Lokalisierung</label>
-      <input
-        id="localization"
-        v-model.lazy="place.localization"
-        type="text"
-        name="localization"
-      />
+    <ActionBar v-if="!isEditing">
+      <Button text="Neuer Ort" @click.native="() => (isEditing = true)" />
+    </ActionBar>
 
-      <ActionBar>
-        <Button
-          text="Ort speichern"
-          button-type="submit"
-          @click.native.prevent="saveNewPlace"
-        />
-      </ActionBar>
-    </form>
+    <ActionBar v-else>
+      <form>
+        <label for="name">Name</label>
+        <input id="name" v-model.lazy="place.name" type="text" name="name" />
+        <Button text="Speichern" @click.native="saveNewPlace" />
+        <Button text="Cancel" @click.native="resetForm" />
+      </form>
+    </ActionBar>
   </div>
 </template>
 
@@ -40,25 +21,37 @@ import Button from '../_shared/Button';
 import ActionBar from '../_shared/ActionBar';
 
 export default {
-  name: 'PlacesNew',
+  name: 'PlaceNew',
   components: { Button, ActionBar },
-  computed: {
-    place() {
-      return new Place();
-    }
+  data() {
+    return {
+      isEditing: false,
+      place: {}
+    };
+  },
+  created() {
+    this.place = this.createNewPlace();
   },
   methods: {
     saveNewPlace() {
       Place.insert({
         data: this.place
       }).then(entities => {
+        this.resetForm();
         this.$router
           .push({
             name: 'places-detail',
-            params: { id: entities.places[0].id }
+            params: { id: entities.places[0].id, isEditing: true }
           })
           .catch(() => {});
       });
+    },
+    resetForm() {
+      this.isEditing = false;
+      this.place = this.createNewPlace();
+    },
+    createNewPlace() {
+      return new Place();
     }
   }
 };

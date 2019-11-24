@@ -8,10 +8,6 @@
       <p>Wähle einen Ort aus.</p>
     </div>
 
-    <div v-if="this.$route.params.id === 'new'">
-      <PlaceNew />
-    </div>
-
     <div v-if="typeof this.$route.params.id === 'number'">
       <PlaceShow />
     </div>
@@ -19,11 +15,10 @@
 </template>
 
 <script>
-import PlaceNew from './PlaceNew';
 import PlaceShow from './PlaceShow';
 
 export default {
-  name: 'PlacesDetail',
-  components: { PlaceNew, PlaceShow }
+  name: 'PlaceDetail',
+  components: { PlaceShow }
 };
 </script>

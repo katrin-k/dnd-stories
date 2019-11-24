@@ -1,5 +1,5 @@
 import { Model } from '@vuex-orm/core';
-import Adventure from './Adventure';
+// import Adventure from './Adventure';
 import { Item, PlaceItem } from './Item';
 
 export class PlaceCategory extends Model {
@@ -39,7 +39,7 @@ export class Place extends Model {
       description: this.string(null),
       localization: this.string(null),
       category_id: this.string(null),
-      adventures: this.belongsToMany(Adventure, AdvPlace, 'place_id', 'adv_id'),
+      // adventures: this.belongsToMany(Adventure, AdvPlace, 'place_id', 'adv_id'),
       items: this.belongsToMany(Item, PlaceItem, 'place_id', 'item_id')
     };
   }

@@ -3,13 +3,9 @@
     <h2 class="text-2xl">
       All places
     </h2>
-    <ActionBar>
-      <Button
-        text="Neuer
-        Ort"
-        @click.native="loadItem($event, 'new')"
-      />
-    </ActionBar>
+
+    <PlaceNew />
+
     <ul class="mt-4">
       <li v-for="place in places" :key="place.id" class="mb-2">
         <Button
@@ -25,11 +21,11 @@
 <script>
 import { Place } from '@/store/models/Place';
 import Button from '../_shared/Button';
-import ActionBar from '../_shared/ActionBar';
+import PlaceNew from './PlaceNew';
 
 export default {
-  name: 'PlacesIndex',
-  components: { Button, ActionBar },
+  name: 'PlaceIndex',
+  components: { PlaceNew, Button },
   computed: {
     places() {
       return Place.all();
