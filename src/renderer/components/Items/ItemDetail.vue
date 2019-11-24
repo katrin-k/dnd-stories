@@ -18,7 +18,7 @@
 import ItemShow from './ItemShow';
 
 export default {
-  name: 'ItemsDetail',
+  name: 'ItemDetail',
   components: { ItemShow }
 };
 </script>

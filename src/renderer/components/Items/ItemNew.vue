@@ -9,7 +9,7 @@
         <label for="name">Name</label>
         <input id="name" v-model.lazy="item.name" type="text" name="name" />
         <Button text="Speichern" @click.native="saveNewItem" />
-        <Button text="Cancel" @click.native="handleCancel" />
+        <Button text="Cancel" @click.native="resetForm" />
       </form>
     </ActionBar>
   </div>
@@ -37,8 +37,7 @@ export default {
       Item.insertOrUpdate({
         data: this.item
       }).then(entities => {
-        this.isEditing = false;
-        this.item = this.createNewItem();
+        this.resetForm();
         this.$router
           .push({
             name: 'items-details',
@@ -47,7 +46,7 @@ export default {
           .catch(() => {});
       });
     },
-    handleCancel() {
+    resetForm() {
       this.isEditing = false;
       this.item = this.createNewItem();
     },

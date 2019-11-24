@@ -27,7 +27,7 @@ import ItemCategories from './ItemCategories';
 import Button from '../_shared/Button';
 
 export default {
-  name: 'ItemsIndex',
+  name: 'ItemIndex',
   components: { ItemNew, ItemCategories, Button },
   computed: {
     items() {

@@ -40,7 +40,7 @@
           @click.native="loadComponent($event, 'place-show', place.id)"
         />
 
-        <Button text="X" @click.native="deletePlaceRelation(place.id)" />
+        <Button text="X" @click.native="deletePlaceItemRelation(place.id)" />
       </li>
     </RelatedDataList>
 
@@ -58,7 +58,7 @@
         track-by="id"
         label="name"
         clear-on-select
-        @input="addPlacetoItem"
+        @input="addPlaceItemRelation"
       />
     </ActionBar>
 
@@ -116,10 +116,13 @@ export default {
   },
   methods: {
     ...mapActions(['dynamicSlotDisplayComponent']),
+    handleEditItem() {
+      this.isEditing = !this.isEditing;
+    },
     handleDeleteItem(itemId) {
       this.item.places.length > 0 &&
         this.item.places.forEach(relatedPlace =>
-          this.deletePlaceRelation(relatedPlace.id)
+          this.deletePlaceItemRelation(relatedPlace.id)
         );
       this.deleteItem(itemId);
     },
@@ -129,13 +132,10 @@ export default {
         .push({ name: 'items-details', params: { id: 'init' } })
         .catch(() => {});
     },
-    deletePlaceRelation(placeId) {
-      PlaceItem.delete([placeId, this.item.id]);
-    },
     showAddPlace() {
       this.editingPlace = true;
     },
-    addPlacetoItem(newPlace) {
+    addPlaceItemRelation(newPlace) {
       const prevPlaces = this.item.places;
 
       Item.insertOrUpdate({
@@ -147,8 +147,8 @@ export default {
         this.editingPlace = false;
       });
     },
-    handleEditItem() {
-      this.isEditing = !this.isEditing;
+    deletePlaceItemRelation(placeId) {
+      PlaceItem.delete([placeId, this.item.id]);
     },
     loadComponent(event, componentName, id) {
       this.dynamicSlotDisplayComponent({

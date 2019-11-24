@@ -9,11 +9,11 @@ import ItemsPage from '../pages/ItemsPage';
 
 import CreaturesIndex from '../components/Creatures/CreaturesIndex';
 
-import ItemsIndex from '../components/Items/ItemsIndex';
-import ItemsDetail from '../components/Items/ItemsDetail';
+import ItemIndex from '../components/Items/ItemIndex';
+import ItemDetail from '../components/Items/ItemDetail';
 
-import PlacesIndex from '../components/Places/PlacesIndex';
-import PlacesDetail from '../components/Places/PlacesDetail';
+import PlaceIndex from '../components/Places/PlaceIndex';
+import PlaceDetail from '../components/Places/PlaceDetail';
 
 import AdventuresIndex from '../components/Adventures/AdventuresIndex';
 import AdventuresShow from '../components/Adventures/AdventuresShow';
@@ -47,8 +47,8 @@ const router = new Router({
           path: ':id',
           name: 'items-details',
           components: {
-            sidebar: ItemsIndex,
-            main: ItemsDetail
+            sidebar: ItemIndex,
+            main: ItemDetail
           }
         }
       ]
@@ -62,8 +62,8 @@ const router = new Router({
           path: ':id',
           name: 'places-detail',
           components: {
-            sidebar: PlacesIndex,
-            main: PlacesDetail
+            sidebar: PlaceIndex,
+            main: PlaceDetail
           }
         }
       ]
