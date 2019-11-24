@@ -59,7 +59,7 @@
         <ActionBar>
           <Button
             text="Abenteuer speichern"
-            type-submit
+            button-type="submit"
             @click.native.prevent="handleSave"
           />
         </ActionBar>

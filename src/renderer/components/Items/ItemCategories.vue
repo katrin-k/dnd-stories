@@ -44,7 +44,7 @@
         <ActionBar>
           <Button
             text="Itemkategorie speichern"
-            type-submit
+            button-type="submit"
             @click.native.prevent="saveItemCategory"
           />
         </ActionBar>

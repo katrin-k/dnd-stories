@@ -4,9 +4,9 @@
       'btn-text': textButton,
       btn: !textButton,
       'btn-tag': tagStyle,
-      'btn-submit': typeSubmit
+      'btn-submit': buttonType === 'submit'
     }"
-    :type="typeSubmit ? 'submit' : 'button'"
+    :type="buttonType"
   >
     {{ text }}
   </button>
@@ -28,9 +28,9 @@ export default {
       type: Boolean,
       default: false
     },
-    typeSubmit: {
-      type: Boolean,
-      default: false
+    buttonType: {
+      type: String,
+      default: 'button'
     }
   }
 };

@@ -26,7 +26,7 @@
       <ActionBar>
         <Button
           text="Ort speichern"
-          type-submit
+          button-type="submit"
           @click.native.prevent="saveNewPlace"
         />
       </ActionBar>
